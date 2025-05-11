@@ -1,0 +1,420 @@
+@import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
+@import "tailwindcss"; /* Es importante mantener esto para que Tailwind funcione con el resto de tu HTML y clases de utilidad */
+
+:root {
+  --font-sans: "Mona Sans", sans-serif;
+  /* COLORES DE MARCA COMO VARIABLES CSS */
+  --xaga-gold-dark: #a69167;
+  --xaga-beige: #e4e8ee;
+  --xaga-gold-light: #e1d78c;
+  --xaga-gold-medium: #b49655;
+  --xaga-black: #000000;
+  --xaga-white: #ffffff;
+}
+
+html,
+body {
+  width: 100dvw;
+  overflow-x: hidden;
+  background-color: var(--xaga-beige); /* Usando variable CSS */
+  color: var(--xaga-black); /* Usando variable CSS */
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+}
+
+section {
+  width: 100%;
+}
+
+@theme {
+  --font-sans: "Mona Sans", sans-serif;
+}
+
+@layer utilities {
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+  .flex-col-center {
+    @apply flex flex-col justify-center items-center;
+  }
+  .animate-marquee {
+    animation: marqueeAnimation 40s linear infinite;
+    will-change: transform;
+  }
+}
+
+@keyframes marqueeAnimation {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@layer components {
+  .padding-x {
+    @apply px-5 md:px-10;
+  }
+  .padding-x-lg {
+    @apply px-5 md:px-20;
+  }
+  .section-padding {
+    @apply px-5 md:px-10 py-16 md:py-24;
+  }
+  .mt-responsive {
+    @apply xl:mt-20 md:mt-0 mt-40;
+  }
+
+  .grid-base {
+    @apply grid grid-cols-1;
+  }
+  .grid-2-cols {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+  }
+  .grid-3-cols {
+    @apply grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6;
+  }
+  .grid-3-cols-md-tight {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-0;
+  }
+  .grid-4-cols {
+    @apply grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-7;
+  }
+  .grid-12-cols {
+    @apply grid grid-cols-1 xl:grid-cols-12 gap-10;
+  }
+
+  .hero-layout {
+    @apply relative z-10 xl:mt-10 mt-16 flex xl:items-center items-start justify-center min-h-[70vh] md:min-h-[80vh];
+  }
+  .hero-text {
+    color: var(--xaga-black);
+    @apply flex flex-col justify-center md:text-[60px] text-[30px] font-semibold relative z-10 pointer-events-none;
+    img {
+      @apply size-8 md:size-10 object-contain;
+    }
+    .slide {
+      @apply absolute pt-0 px-2 md:px-5 py-[30px] h-[48px] md:h-[78px] md:translate-y-1 translate-y-0 overflow-hidden;
+    }
+  }
+  .hero-badge {
+    background-color: var(--xaga-gold-dark);
+    color: var(--xaga-white);
+    @apply py-2 px-4 rounded-full w-fit text-sm md:text-base text-nowrap;
+  }
+  .hero-3d-layout {
+    @apply xl:w-[70%] w-full h-full min-h-[50vh] absolute xl:-top-20 top-24 xl:-right-20 right-0;
+  }
+
+  .navbar {
+    @apply fixed w-full left-1/2 py-5 px-5 md:px-20 -translate-x-1/2 z-[100] transition-all duration-300 ease-in-out;
+    &.scrolled {
+      background-color: var(--xaga-white);
+      @apply top-0 shadow-lg;
+    }
+    &.not-scrolled {
+      @apply md:top-6 top-0 bg-transparent;
+    }
+    .inner {
+      @apply mx-auto flex items-center justify-between;
+    }
+    .logo {
+      color: var(--xaga-gold-dark);
+      @apply text-xl md:text-2xl font-semibold transition-transform duration-300 hover:scale-105;
+    }
+    nav.desktop {
+      @apply hidden lg:flex items-center;
+      ul {
+        @apply flex space-x-8;
+        li {
+          color: var(--xaga-black);
+          @apply relative;
+          span {
+            @apply transition-colors duration-300;
+            &:hover {
+              color: var(--xaga-gold-dark);
+            }
+          }
+          .underline {
+            background-color: var(--xaga-gold-dark);
+            @apply absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full;
+          }
+        }
+      }
+    }
+    .contact-btn {
+      @apply flex;
+      .inner {
+        background-color: var(--xaga-gold-dark);
+        color: var(--xaga-white);
+        @apply px-5 py-2 rounded-lg transition-colors duration-300;
+        &:hover {
+          background-color: var(--xaga-gold-medium);
+        }
+      }
+    }
+  }
+
+  .cta-wrapper {
+    @apply relative z-20 cursor-pointer;
+  }
+  .cta-button {
+    background-color: var(--xaga-gold-dark);
+    color: var(--xaga-white);
+    @apply px-4 py-4 rounded-lg flex justify-center items-center relative cursor-pointer overflow-hidden;
+
+    .bg-circle {
+      background-color: var(--xaga-gold-medium);
+      @apply absolute -right-10 origin-center top-1/2 -translate-y-1/2 w-[120%] h-[120%] group-hover:size-10 group-hover:right-10 rounded-full transition-all duration-500 opacity-50 group-hover:opacity-100;
+    }
+    .text {
+      color: var(--xaga-white);
+      /* CORRECCIÓN: Eliminado group-hover:text-xaga-white de @apply */
+      @apply uppercase md:text-lg transition-all duration-500 group-hover:-translate-x-5 xl:translate-x-0 -translate-x-5;
+    }
+    /* El :hover para .text se maneja por el color base ya que no cambiaba, o se podría añadir explícitamente:
+    &:hover .text { color: var(--xaga-white); } si fuera necesario un cambio. */
+
+    .arrow-wrapper {
+      background-color: transparent; /* Color base */
+      /* CORRECCIÓN: Eliminado group-hover:bg-xaga-gold-light de @apply */
+      @apply size-10 rounded-full absolute right-10 top-1/2 -translate-y-1/2 flex justify-center items-center overflow-hidden;
+      img {
+        @apply size-5 xl:-translate-y-32 translate-y-0 animate-bounce group-hover:translate-y-0 transition-all duration-500 filter;
+      }
+    }
+    &:hover .arrow-wrapper {
+      background-color: var(
+        --xaga-gold-light
+      ); /* CSS explícito para el hover */
+    }
+  }
+
+  .card-border {
+    border: 1px solid var(--xaga-gold-medium);
+    background-color: var(--xaga-white);
+    @apply rounded-lg shadow-lg;
+  }
+
+  .marquee-item {
+    @apply md:w-40 w-32;
+  }
+
+  .timeline-wrapper {
+    @apply absolute top-0 xl:left-[35.5vw] md:left-10 left-5 h-full flex justify-center;
+  }
+  .timeline {
+    background-color: var(--xaga-beige);
+    @apply absolute z-30 h-[110%] -top-10 w-14 md:w-28;
+  }
+  .timeline-logo {
+    border: 1px solid var(--xaga-gold-medium);
+    background-color: var(--xaga-white);
+    @apply md:size-20 size-10 flex-none rounded-full flex justify-center items-center md:-translate-y-7 shadow-md;
+  }
+
+  .exp-card-wrapper {
+    @apply flex flex-col-reverse xl:flex-row xl:gap-20 gap-10 justify-between;
+  }
+
+  .tech-card-animated-bg {
+    background-color: var(--xaga-gold-light);
+    @apply absolute left-0 bottom-[-100%] w-full h-full opacity-50 group-hover:bottom-0 transition-all duration-700;
+  }
+  .tech-card-content {
+    @apply flex flex-col md:justify-center items-center xl:gap-5 xl:h-[50vh] overflow-hidden relative z-10 group-hover:cursor-grab;
+    & p {
+      color: var(--xaga-black);
+      @apply text-lg 2xl:text-2xl pb-5 xl:pb-0 font-semibold text-center;
+    }
+  }
+  .tech-grid {
+    @apply grid xl:grid-cols-5 md:grid-cols-3 grid-cols-1 xl:gap-16 md:gap-10 gap-5 mt-16;
+  }
+  .tech-icon-wrapper {
+    @apply flex justify-center items-center w-52 h-60 relative;
+  }
+
+  form {
+    label {
+      color: var(--xaga-black);
+      @apply block mb-2 font-medium;
+    }
+    input,
+    textarea {
+      background-color: var(--xaga-white);
+      border: 1px solid var(--xaga-gold-light);
+      @apply w-full px-4 py-3 md:text-base text-sm rounded-md outline-none;
+      &::placeholder {
+        color: var(--xaga-gold-medium);
+      }
+      &:focus {
+        border-color: var(--xaga-gold-dark); /* CSS directo */
+        /* CORRECCIÓN: Reemplazar @apply ring-1 ring-xaga-gold-dark; con box-shadow */
+        box-shadow: 0 0 0 1px var(--xaga-gold-dark);
+        /* Mantenemos otras utilidades de focus si las hubiera, pero el ring se maneja manualmente */
+        /* @apply ring-1; /* Si solo quisieras el ancho, pero el color ya está en box-shadow */
+      }
+    }
+    a.button-form,
+    button[type="submit"].button-form {
+      background-color: var(--xaga-gold-dark);
+      color: var(--xaga-white);
+      @apply w-full mt-4 py-3 px-4 font-semibold rounded-md flex justify-center items-center gap-2 transition-colors duration-300;
+      &:hover {
+        background-color: var(--xaga-gold-medium);
+      }
+      img {
+        @apply inline-block;
+      }
+    }
+  }
+
+  .footer {
+    background-color: var(--xaga-white);
+    color: var(--xaga-black);
+    @apply py-10 md:py-16 mt-10 md:mt-20 px-5 md:px-10 lg:px-20;
+    .footer-container {
+      @apply grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-5 w-full max-w-6xl mx-auto;
+    }
+    p {
+      @apply text-center md:text-start;
+    }
+    .socials {
+      @apply flex items-center justify-center md:justify-end gap-4;
+      .icon {
+        border: 1px solid var(--xaga-gold-medium);
+        @apply bg-transparent flex justify-center items-center rounded-full size-10 md:size-12 cursor-pointer transition-all duration-300;
+        &:hover {
+          background-color: var(--xaga-gold-light);
+          border-color: var(--xaga-gold-dark);
+        }
+        img {
+          @apply inline-block size-5 md:size-6;
+        }
+      }
+    }
+  }
+}
+
+.slide {
+  display: inline-block;
+  transition: all cubic-bezier(0.71, 0.03, 0.34, 1);
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  animation: wordSlider 21s infinite cubic-bezier(0.9, 0.01, 0.3, 0.99);
+}
+@keyframes wordSlider {
+  0% {
+    transform: translateY(0.5%);
+  }
+  12.5% {
+    transform: translateY(-12.5%);
+  }
+  25% {
+    transform: translateY(-25%);
+  }
+  37.5% {
+    transform: translateY(-37.5%);
+  }
+  50% {
+    transform: translateY(-50%);
+  }
+  62.5% {
+    transform: translateY(-62.5%);
+  }
+  75% {
+    transform: translateY(-75%);
+  }
+  87.5% {
+    transform: translateY(-87.5%);
+  }
+}
+
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.marquee-box {
+  display: flex;
+  align-items: center;
+  width: 200%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  animation: marquee 60s linear infinite;
+}
+.marquee-item {
+  float: left;
+}
+@keyframes marquee {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -100%;
+  }
+}
+
+.card {
+  --start: 0;
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+  transition: border-color 1s ease-in-out;
+  background-color: var(--xaga-white);
+}
+
+.card::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: inherit;
+  border: 2px solid transparent;
+  background: conic-gradient(
+    from calc(var(--start) * 1deg),
+    transparent 0deg,
+    #b49655 60deg,
+    /* xaga-gold-medium HEX */ #a69167 120deg,
+    /* xaga-gold-dark HEX */ transparent 180deg
+  );
+  mask: linear-gradient(#0000, #0000), linear-gradient(#000, #000);
+  mask-composite: intersect;
+  mask-clip: padding-box, border-box;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.glow {
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(10px) saturate(150%);
+  background-color: var(--xaga-gold-light);
+  opacity: 0.3;
+}
+
+.card:hover::before {
+  opacity: 1;
+  animation: spin 3s linear infinite;
+}
+@keyframes spin {
+  from {
+    --start: 0;
+  }
+  to {
+    --start: 360;
+  }
+}
