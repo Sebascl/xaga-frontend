@@ -14,12 +14,12 @@
 
 html,
 body {
-  width: 100dvw;
+  width: 100%;
   overflow-x: hidden;
   background-color: var(--xaga-beige); /* Usando variable CSS */
   color: var(--xaga-black); /* Usando variable CSS */
   font-family: var(--font-sans);
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
 }
 
 section {

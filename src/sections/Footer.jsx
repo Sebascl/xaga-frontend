@@ -10,20 +10,19 @@ const Footer = () => {
   const footerRef = useRef(null);
 
   useGSAP(() => {
-    gsap.fromTo(footerRef.current,
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
+    if (footerRef.current) {
+      gsap.set(footerRef.current, { autoAlpha: 0 }); 
+      gsap.to(footerRef.current, {
+        autoAlpha: 1,
         duration: 0.8,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: footerRef.current,
-          start: 'top bottom-=100px',
-          toggleActions: 'play none none none'
+          start: 'top bottom-=50px',
+          toggleActions: 'play none none none',
         }
-      }
-    );
+      });
+    }
   }, { scope: footerRef });
 
   const currentYear = new Date().getFullYear();
