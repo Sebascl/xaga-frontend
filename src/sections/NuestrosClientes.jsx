@@ -52,7 +52,7 @@ const NuestrosClientes = () => {
     <section
       id="clientes"
       ref={sectionRef}
-      className=""
+      className="py-10 md:py-18"
       style={{ backgroundColor: xagaBeigeColor }}
     >
       <div className="container mx-auto px-0 md:px-6 lg:px-8">

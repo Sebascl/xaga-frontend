@@ -7,6 +7,10 @@ const navLinks = [
     name: "Servicios",
     link: "#servicios",
   },
+  {
+    name: "Tramites Visas",
+    link: "#tramites-visa",
+  },
 ];
 
 const words = [

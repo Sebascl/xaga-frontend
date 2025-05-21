@@ -9,10 +9,68 @@ import ServiceDetailModal from './ServiceDetailModal';
 gsap.registerPlugin(ScrollTrigger);
 
 const servicesData = [
-  { id: 'penal', category: "DERECHO PENAL", imagePath: "/images/services/penal_hero.jpeg", items: ["Denuncias Virtuales: Acudimos a tu empresa con los dispositivos adecuados para realizar cualquier tipo de denuncia de tipo penal.", "Querellas: Redactamos la denuncia correspondiente y la presentamos directamente en la Fiscalía del estado.", "Defensa: Nuestros abogados ostentan maestría en derecho penal, te representamos y defendemos en cualquier tipo de delito.", "Asesoría Jurídica a Víctimas: La asesoría inicia desde que se presenta la denuncia o querella y hasta que el juicio oral penal se lleve a cabo.", "Amparos: Se interponen contra todo tipo de actos de autoridad en tu contra, ordenes de aprensión, comparecencia o presentación, etc."] },
-  { id: 'mercantil-civil', category: "DERECHO MERCANTIL Y CIVIL", imagePath: "/images/services/mercantil_hero.png", items: ["Demandas civiles y mercantiles.", "Contratos: Todo tipo de contratos civiles, mercantiles, notariados, entre particulares y/o ratificados.", "Cobranza Extrajudicial: Tres visitas de cobranza extrajudicial a clientes morosos, notificándoles el requerimiento de pago.", "Gestiones notariales: Poderes y actas constitutivas entre otras gestiones, todo a costo directo de volumen."] },
-  { id: 'laboral', category: "DERECHO LABORAL", imagePath: "/images/services/laboral_hero.webp", items: ["Derecho laboral: Brindamos asesoría en todo tipo de asuntos laborales.", "Litigio ante juntas federales y locales de conciliación y arbitraje.", "Demandas laborales.", "Citas conciliatorias: buscamos soluciones amigables que te ayuden a resolver conflictos laborales.", "Constitución y operación de empresas de servicio de personal, así como la elaboración de contratos laborales sólidos."] },
-  { id: 'administrativo', category: "DERECHO ADMINISTRATIVO", imagePath: "/images/services/administrativo_hero.jpg", items: ["Nos enfocamos en asesoría urbanística que abarca desde el análisis de la zonificación de uso de suelo hasta lograr las diversas licencias municipales, en jurisdicción Municipal, Estatal y Federal."] }
+  {
+    id: 'penal',
+    category: "DERECHO PENAL",
+    imagePath: "/images/services/penal_hero.jpeg",
+    items: [
+      "Denuncias Virtuales: Acudimos a tu empresa con los dispositivos adecuados para realizar cualquier tipo de denuncia de tipo penal.",
+      "Querellas: Redactamos la denuncia correspondiente y la presentamos directamente en la Fiscalía del estado.",
+      "Defensa: Nuestros abogados ostentan maestría en derecho penal, te representamos y defendemos en cualquier tipo de delito.",
+      "Asesoría Jurídica a Víctimas: La asesoría inicia desde que se presenta la denuncia o querella y hasta que el juicio oral penal se lleve a cabo.",
+      "Amparos: Se interponen contra todo tipo de actos de autoridad en tu contra, ordenes de aprensión, comparecencia o presentación, etc."
+    ]
+  },
+  {
+    id: 'mercantil-civil',
+    category: "DERECHO MERCANTIL Y CIVIL",
+    imagePath: "/images/services/mercantil_hero.png",
+    introduction: "En XAGA Abogados, entendemos que las relaciones civiles y las actividades comerciales son fundamentales en la vida diaria y el desarrollo empresarial. Ofrecemos una asesoría integral y representación legal experta para proteger sus intereses personales, patrimoniales y de negocios, abarcando desde la gestión de contratos y obligaciones hasta la resolución de disputas complejas. Nuestro equipo está preparado para guiarle a través de los siguientes procedimientos y servicios especializados:",
+    items: [
+      // Items de Civil
+      "Juicio ordinario civil.",
+      "Juicio especial de desahucio por falta de pago de rentas.",
+      "Juicio especial hipotecario (constitución, ampliación, registro, extinción, etc.).",
+      "Juicios sucesorios testamentarios e intestados.",
+      "Interposición de recursos de apelación en materia civil.",
+      "Análisis, elaboración y revisión de contratos civiles (compraventa, arrendamiento, donación, comodato, hipoteca, prestación de servicios, asociación y sociedad civil, entre otros).",
+      // Items de Mercantil (antes en "Civil y Mercantil")
+      "Asesoría y representación legal en controversias mercantiles.",
+      "Cobranza judicial y extrajudicial de títulos de crédito (pagarés, cheques, etc.).",
+      "Representación legal en juicios ordinarios y ejecutivos mercantiles.",
+      "Estudio, elaboración y revisión de contratos mercantiles (comisión, depósito, préstamo, compraventa mercantil, suministro, transporte, seguro, fianza, fideicomiso, arrendamiento financiero, franquicia, etc.).",
+      "Reclamaciones de seguros y fianzas ante compañías aseguradoras.",
+      "Intervención en procesos arbitrales.",
+      "Asesoría en reestructuración de deuda y concurso mercantil."
+    ]
+  },
+  {
+    id: 'laboral',
+    category: "DERECHO LABORAL",
+    imagePath: "/images/services/laboral_hero.webp",
+    introduction: "Las dinámicas del entorno laboral requieren un manejo legal preciso y estratégico. En XAGA Abogados, nos dedicamos a la prevención y solución de conflictos laborales, defendiendo con pericia los derechos tanto de empleadores como de trabajadores. Nuestro objetivo es brindar certeza y resultados efectivos en cada caso, ofreciendo un espectro completo de servicios que incluye:",
+    items: [
+      "Asesoría y representación legal de empresas en materia laboral.",
+      "Asesoría y representación legal de trabajadores en materia laboral.",
+      "Cálculo de finiquitos e indemnizaciones.",
+      "Atención de juicios ante Juntas de Conciliación y Arbitraje y Tribunales Laborales.",
+      "Asesoría y participación en procesos de conciliación laboral.",
+      "Negociación con trabajadores y sindicatos.",
+      "Asesoría e intervención en procedimientos de huelga.",
+      "Acompañamiento y asesoría durante inspecciones de la Secretaría del Trabajo y Previsión Social.",
+      "Elaboración y formalización de actas administrativas laborales.",
+      "Diseño, elaboración y revisión de contratos individuales y colectivos de trabajo.",
+      "Elaboración, modificación y revisión de reglamentos interiores de trabajo."
+    ]
+  },
+  {
+    id: 'administrativo',
+    category: "DERECHO ADMINISTRATIVO",
+    imagePath: "/images/services/administrativo_hero.jpg",
+    items: [
+      "Nos enfocamos en asesoría urbanística que abarca desde el análisis de la zonificación de uso de suelo hasta lograr las diversas licencias municipales, en jurisdicción Municipal, Estatal y Federal."
+    ]
+  }
 ];
 
 const NuestrosServicios = () => {

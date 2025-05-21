@@ -16,8 +16,8 @@ const contactInfo = {
   address: "Olimpia No. 1521 Col. Nueva Linda Vista, Guadalupe, N.L.",
   mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d898.7363824624719!2d-100.227786022294!3d25.706227442182158!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8662eaed14aa0705%3A0x1a6264716003490d!2sOlimpia%201521%2C%20Nueva%20Linda%20Vista%2C%2067129%20Guadalupe%2C%20N.L.%2C%20M%C3%A9xico!5e0!3m2!1ses!2sco!4v1746983147815!5m2!1ses!2sco", // RECUERDA REEMPLAZAR ESTA URL
   firmLeaders: [
-    "Lic. Ana María Velázquez",
-    "Lic. Izza María Velázquez"
+    "Lic. Ana María Mendoza",
+    "Lic. Izza Mariana Mendoza"
   ]
 };
 

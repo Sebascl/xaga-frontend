@@ -7,6 +7,7 @@ import QuienesSomos from "./sections/QuienesSomos";
 import NuestrosClientes from "./sections/NuestrosClientes";
 import Navbar from "./components/NavBar";
 import ChooseUs from "./sections/ChooseUs";
+import TramitesVisa from "./sections/TramitesVisa";
 
 const App = () => (
   <>
@@ -16,6 +17,7 @@ const App = () => (
     <ChooseUs />
     <MisionVision />
     <Services />
+    <TramitesVisa />
     <NuestrosClientes />
     <Contact />
     <Footer />
