@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -6,90 +6,85 @@ import TitleHeader from "../components/TitleHeader";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const PuzzleIcon = (props) => (
+  <svg viewBox="0 0 24 24" width="40" height="40" fill="currentColor" {...props} xmlns="http://www.w3.org/2000/svg">
+    <path d="M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V5H6c-1.1 0-2 .9-2 2v3.8H2.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5H4v3.05c0 1.1.9 2 2 2h4v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h4c1.1 0 2-.9 2-2v-3.5h1.5c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5z"/>
+  </svg>
+);
+
+const LightbulbIcon = (props) => (
+  <svg viewBox="0 0 24 24" width="40" height="40" fill="currentColor" {...props} xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm0 13.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5zM9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1z"/>
+  </svg>
+);
+
 const MisionVision = () => {
   const sectionRef = useRef(null);
   const misionCardRef = useRef(null);
   const visionCardRef = useRef(null);
 
-  const misionText =
-    "Proporcionar asesoría legal estratégica e integral de manera eficaz y especializada en asuntos de derecho penal, civil y mercantil, comprometidos en todos los casos a ofrecerle a nuestros clientes el apoyo necesario para la búsqueda de justicia y resolución de conflictos legales.";
-  const visionText =
-    "Ser lideres en el campo legal, destacando nuestro compromiso, resultados exitosos y amplia experiencia. Buscamos ser reconocidos como los mejores aliados de nuestros clientes para alcanzar sus objetivos en el ámbito legal.";
+  const misionText = "Proporcionar asesoría legal estratégica e integral de manera eficaz y especializada en asuntos de derecho penal, civil y mercantil, comprometidos en todos los casos a ofrecerle a nuestros clientes el apoyo necesario para la búsqueda de justicia y resolución de conflictos legales.";
+  const visionText = "Ser lideres en el campo legal, destacando nuestro compromiso, resultados exitosos y amplia experiencia. Buscamos ser reconocidos como los mejores aliados de nuestros clientes para alcanzar sus objetivos en el ámbito legal.";
 
-  useGSAP(
-    () => {
-      const cards = [
-        { ref: misionCardRef.current, delay: 0 },
-        { ref: visionCardRef.current, delay: 0.2 },
-      ].filter((c) => c.ref);
+  useGSAP(() => {
+    const cardsToAnimate = [misionCardRef.current, visionCardRef.current].filter(Boolean);
 
-      cards.forEach((cardItem) => {
-        const card = cardItem.ref;
-        const iconEl = card.querySelector(".card-icon-area span");
-        const titleEl = card.querySelector("h3");
-        const textEl = card.querySelector("p");
+    cardsToAnimate.forEach((card, index) => {
+      gsap.set(card, { opacity: 0, y: 70, scale: 0.9 }); 
+      
+      const cardContent = card.querySelectorAll('.card-content-animate');
+      gsap.set(cardContent, { opacity: 0, y: 25 });
 
-        gsap.fromTo(
-          card,
-          { opacity: 0, y: 70, scale: 0.9 },
-          {
+      ScrollTrigger.create({
+        trigger: card,
+        start: "top 85%",
+        once: true, 
+        onEnter: () => {
+          gsap.to(card, {
             opacity: 1,
             y: 0,
             scale: 1,
             duration: 0.9,
             ease: "power3.out",
-            delay: cardItem.delay,
-            scrollTrigger: {
-              trigger: card,
-              start: "top 88%",
-              toggleActions: "play none none none",
-            },
+            delay: index * 0.2,
             onComplete: () => {
-              gsap.fromTo(
-                [iconEl, titleEl, textEl],
-                { opacity: 0, y: 25 },
-                {
-                  opacity: 1,
-                  y: 0,
-                  duration: 0.7,
-                  stagger: 0.15,
-                  ease: "power2.out",
-                }
-              );
-            },
-          }
-        );
+              gsap.to(cardContent, {
+                opacity: 1,
+                y: 0,
+                duration: 0.7,
+                stagger: 0.1,
+                ease: 'power2.out'
+              });
+            }
+          });
+        }
       });
-    },
-    { scope: sectionRef }
-  );
+    });
+  }, { scope: sectionRef, dependencies: [] });
+
 
   const cardBaseStyle = {
     backgroundColor: "var(--xaga-white)",
-    borderWidth: "1px",
-    borderStyle: "solid",
-    borderColor: "var(--xaga-gold-light)",
-    borderRadius: "1rem", // .rounded-xl
-    boxShadow:
-      "0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -4px rgba(0,0,0,0.05)", // Sombra más sutil
-    transition:
-      "transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.35s ease",
-    minHeight: "380px", // Mayor altura para dar espacio al nuevo diseño
-    padding: "2rem", // p-8
+    borderRadius: "1rem",
+    boxShadow: "0 10px 25px -5px rgba(0,0,0,0.07), 0 6px 10px -6px rgba(0,0,0,0.07)",
+    transition: "transform 0.35s ease, box-shadow 0.35s ease",
+    overflow: 'hidden', 
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: "400px",
   };
 
   const cardHoverStyle = {
     transform: "translateY(-10px)",
-    boxShadow:
-      "0 20px 25px -5px rgba(166,145,103,0.15), 0 10px 10px -5px rgba(166,145,103,0.1)",
-    borderColor: "var(--xaga-gold-medium)",
+    boxShadow: "0 20px 30px -10px rgba(166,145,103,0.2), 0 10px 15px -10px rgba(166,145,103,0.15)",
   };
+
 
   return (
     <section
       id="mision-vision"
       ref={sectionRef}
-      className="overflow-hidden"
+      className="py-10 md:py-14"
       style={{
         backgroundColor: "var(--xaga-beige)",
       }}
@@ -100,80 +95,45 @@ const MisionVision = () => {
           sub="Compromiso y Dirección Estratégica"
         />
 
-        <div className="mt-16 md:mt-24 grid md:grid-cols-2 gap-10 md:gap-14 items-stretch">
+        <div className="mt-12 md:mt-18 grid md:grid-cols-2 gap-10 md:gap-16 items-stretch">
           <div
             ref={misionCardRef}
-            className="flex flex-col text-center items-center"
-            style={cardBaseStyle}
-            onMouseEnter={(e) =>
-              Object.assign(e.currentTarget.style, cardHoverStyle)
-            }
-            onMouseLeave={(e) =>
-              Object.assign(e.currentTarget.style, cardBaseStyle)
-            }
+            style={{...cardBaseStyle, opacity: 0 }} 
+            onMouseEnter={(e) => Object.assign(e.currentTarget.style, cardHoverStyle) }
+            onMouseLeave={(e) => Object.assign(e.currentTarget.style, cardBaseStyle) }
           >
-            <div
-              className="card-icon-area w-20 h-20 mb-6 rounded-full flex items-center justify-center"
-              style={{ backgroundColor: "var(--xaga-gold-light)" }}
-            >
-              <span
-                className="text-4xl"
-                style={{ color: "var(--xaga-gold-dark)" }}
-                aria-hidden="true"
-              >
-                💡
-              </span>
+            <div style={{ backgroundColor: 'var(--xaga-gold-dark)', padding: '0.75rem' }}></div>
+            <div className="p-6 md:p-8 flex flex-col items-center text-center flex-grow">
+              <div className="card-content-animate w-16 h-16 mb-5 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--xaga-gold-light)' }}>
+                <PuzzleIcon style={{ color: "var(--xaga-gold-dark)" }} />
+              </div>
+              <h3 className="card-content-animate text-2xl lg:text-3xl font-semibold mb-4" style={{ color: "var(--xaga-gold-dark)" }}>
+                Misión
+              </h3>
+              <p className="card-content-animate text-base md:text-lg leading-relaxed text-left" style={{ color: "var(--xaga-black)" }}>
+                {misionText}
+              </p>
             </div>
-
-            <h3
-              className="text-3xl lg:text-4xl font-semibold mb-5"
-              style={{ color: "var(--xaga-gold-dark)" }}
-            >
-              Misión
-            </h3>
-            <p
-              className="text-base md:text-lg leading-relaxed flex-grow"
-              style={{ color: "var(--xaga-black)" }}
-            >
-              {misionText}
-            </p>
           </div>
 
           <div
             ref={visionCardRef}
-            className="flex flex-col text-center items-center"
-            style={cardBaseStyle}
-            onMouseEnter={(e) =>
-              Object.assign(e.currentTarget.style, cardHoverStyle)
-            }
-            onMouseLeave={(e) =>
-              Object.assign(e.currentTarget.style, cardBaseStyle)
-            }
+            style={{...cardBaseStyle, opacity: 0 }}
+            onMouseEnter={(e) => Object.assign(e.currentTarget.style, cardHoverStyle) }
+            onMouseLeave={(e) => Object.assign(e.currentTarget.style, cardBaseStyle) }
           >
-            <div
-              className="card-icon-area w-20 h-20 mb-6 rounded-full flex items-center justify-center"
-              style={{ backgroundColor: "var(--xaga-gold-light)" }}
-            >
-              <span
-                className="text-4xl"
-                style={{ color: "var(--xaga-gold-dark)" }}
-                aria-hidden="true"
-              >
-                🧩
-              </span>
+            <div style={{ backgroundColor: 'var(--xaga-gold-dark)', padding: '0.75rem' }}></div>
+            <div className="p-6 md:p-8 flex flex-col items-center text-center flex-grow">
+              <div className="card-content-animate w-16 h-16 mb-5 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--xaga-gold-light)' }}>
+                <LightbulbIcon style={{ color: "var(--xaga-gold-dark)" }} />
+              </div>
+              <h3 className="card-content-animate text-2xl lg:text-3xl font-semibold mb-4" style={{ color: "var(--xaga-gold-dark)" }}>
+                Visión
+              </h3>
+              <p className="card-content-animate text-base md:text-lg leading-relaxed text-left" style={{ color: "var(--xaga-black)" }}>
+                {visionText}
+              </p>
             </div>
-            <h3
-              className="text-3xl lg:text-4xl font-semibold mb-5"
-              style={{ color: "var(--xaga-gold-dark)" }}
-            >
-              Visión
-            </h3>
-            <p
-              className="text-base md:text-lg leading-relaxed flex-grow"
-              style={{ color: "var(--xaga-black)" }}
-            >
-              {visionText}
-            </p>
           </div>
         </div>
       </div>

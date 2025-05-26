@@ -133,19 +133,6 @@ const Contact = () => {
                 <p>{contactInfo.address}</p>
               </div>
             </div>
-
-            <div className="contact-item-group">
-              <h3 className="text-2xl lg:text-3xl font-semibold mb-4 border-b-2 pb-3" style={{ color: 'var(--xaga-gold-dark)', borderColor: 'var(--xaga-gold-light)' }}>
-                Socios Directores
-              </h3>
-              <ul className="space-y-2 text-lg md:text-xl" style={{ color: 'var(--xaga-black)'}}>
-                {contactInfo.firmLeaders.map((leader, index) => (
-                  <li key={index} className="flex items-center">
-                     <span className="mr-3 text-xl" style={{color: 'var(--xaga-gold-medium)'}}>●</span> {leader}
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
 
           <div ref={mapPanelRef} className="md:col-span-2 rounded-xl overflow-hidden shadow-xl h-96 md:h-[600px] lg:h-[650px] min-h-[400px]">

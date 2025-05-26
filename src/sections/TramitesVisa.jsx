@@ -55,19 +55,19 @@ const visaServicesData = [
       "- Prepararse para la entrevista consular, maximizando sus posibilidades de aprobación.",
     ],
   },
-  {
-    id: "cruce",
-    name: "Tarjeta de Cruce Fronterizo (BCC)",
-    imagePath: "/images/visas/visa4.png",
-    description:
-      'Conocida como "Visa Láser", facilita a ciudadanos mexicanos la entrada ágil a la zona fronteriza de EE.UU.', // Teaser
-    detailedInfo: [
-      "La Tarjeta de Cruce Fronterizo (BCC), o 'Visa Láser', es una tarjeta laminada con múltiples medidas de seguridad, que también funciona como visa B1/B2.",
-      "Permite a los ciudadanos mexicanos ingresar a los Estados Unidos dentro de una zona fronteriza específica por un período limitado (generalmente hasta 30 días y dentro de 25-75 millas de la frontera, dependiendo del estado).",
-      "Para viajar más allá de la zona fronteriza o por períodos más largos, se requiere un permiso I-94.",
-      "XAGA Abogados le asiste en el proceso de solicitud o renovación de su BCC, un documento esencial para residentes de la región.",
-    ],
-  },
+  // {
+  //   id: "cruce",
+  //   name: "Tarjeta de Cruce Fronterizo (BCC)",
+  //   imagePath: "/images/visas/visa4.png",
+  //   description:
+  //     'Conocida como "Visa Láser", facilita a ciudadanos mexicanos la entrada ágil a la zona fronteriza de EE.UU.', // Teaser
+  //   detailedInfo: [
+  //     "La Tarjeta de Cruce Fronterizo (BCC), o 'Visa Láser', es una tarjeta laminada con múltiples medidas de seguridad, que también funciona como visa B1/B2.",
+  //     "Permite a los ciudadanos mexicanos ingresar a los Estados Unidos dentro de una zona fronteriza específica por un período limitado (generalmente hasta 30 días y dentro de 25-75 millas de la frontera, dependiendo del estado).",
+  //     "Para viajar más allá de la zona fronteriza o por períodos más largos, se requiere un permiso I-94.",
+  //     "XAGA Abogados le asiste en el proceso de solicitud o renovación de su BCC, un documento esencial para residentes de la región.",
+  //   ],
+  // },
   {
     id: "tn",
     name: "Visa TN (Profesionistas T-MEC)",

@@ -113,19 +113,6 @@ const QuienesSomos = () => {
             >
               ¿QUIÉNES SOMOS?
             </h2>
-            <p
-              ref={founderRef}
-              className="text-lg md:text-xl mb-6 font-medium"
-              style={{ color: 'var(--xaga-black)' }}
-            >
-              Fundado por el{' '}
-              <span
-                className="font-semibold"
-                style={{ color: 'var(--xaga-gold-dark)' }} 
-              >
-                Lic. Jesús Alonso Mendoza Martínez
-              </span>.
-            </p>
             <div
               ref={textRef}
               className="text-base md:text-lg space-y-5 leading-relaxed prose prose-neutral max-w-none"
