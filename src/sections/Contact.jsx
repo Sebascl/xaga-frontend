@@ -121,7 +121,7 @@ const Contact = () => {
                   onMouseEnter={e => Object.assign(e.currentTarget.style, hoverButtonStyle)}
                   onMouseLeave={e => Object.assign(e.currentTarget.style, baseButtonStyle)}
                 >
-                  Chatea por WhatsApp ({contactInfo.whatsappNumber.display})
+                  Chatea por WhatsApp {contactInfo.whatsappNumber.display}
                 </a>
               </div>
             </div>
