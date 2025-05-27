@@ -1,15 +1,15 @@
-// Button.jsx
+// src/components/Button.jsx
 const Button = ({ text, className, targetId }) => {
   const handleClick = (e) => {
     if (targetId) {
       e.preventDefault();
       const targetElement = document.getElementById(targetId);
       if (targetElement) {
-        const offset = window.innerHeight * 0.10;
-        const bodyRect = document.body.getBoundingClientRect().top;
-        const elementRect = targetElement.getBoundingClientRect().top;
-        const elementPosition = elementRect - bodyRect;
-        const offsetPosition = elementPosition - offset;
+        const navbar = document.querySelector('.navbar'); 
+        const navbarHeight = navbar ? navbar.offsetHeight : 0;
+        const extraOffset = 20;
+        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - navbarHeight - extraOffset;
 
         window.scrollTo({
           top: offsetPosition,
@@ -29,7 +29,7 @@ const Button = ({ text, className, targetId }) => {
         <div className="bg-circle" />
         <p className="text">{text}</p>
         <div className="arrow-wrapper">
-          <img src="/images/arrow-down.svg" alt="arrow" />
+          <img src="/images/arrow-down.svg" alt="Flecha" className="w-5 h-5" />
         </div>
       </div>
     </a>

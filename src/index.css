@@ -9,10 +9,11 @@
   --xaga-gold-medium: #b49655;
   --xaga-black: #000000;
   --xaga-white: #ffffff;
+  --xaga-beige-rgb: 228, 232, 238;
 }
 
 html {
-  scroll-behavior: smooth; /* Puedes reactivar esto si el scroll ya es estable */
+  /* scroll-behavior: smooth; */
 }
 
 body {
@@ -21,39 +22,44 @@ body {
   background-color: var(--xaga-beige);
   color: var(--xaga-black);
   font-family: var(--font-sans);
-  line-height: 1.65;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  text-align: left;
 }
 
 section {
   width: 100%;
-  overflow-x: hidden; /* Para asegurar que ninguna sección cause overflow por sí misma */
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
+  color: var(--xaga-black);
 }
 
 p {
-  margin-bottom: 1rem;
-  max-width: 75ch; /* Mejora la legibilidad para párrafos largos */
-}
-/* Centrar párrafos dentro de contenedores que usan text-center */
-.text-center p {
-    margin-left: auto;
-    margin-right: auto;
+  margin-bottom: 1.25rem;
+  max-width: 70ch;
+  line-height: 1.75;
 }
 
+.text-center p, p.text-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+.text-left p, p.text-left {
+    margin-left: 0;
+    margin-right: 0;
+}
 
 @layer base {
-  h1 { @apply text-4xl font-bold md:text-5xl lg:text-6xl; }
-  h2 { @apply text-3xl font-bold md:text-4xl lg:text-5xl; }
-  h3 { @apply text-2xl font-semibold md:text-3xl; }
-  h4 { @apply text-xl font-semibold md:text-2xl; }
-  /* Ajusta estos estilos base de encabezados según tu jerarquía deseada */
+  h1 { @apply text-4xl font-bold md:text-5xl lg:text-[3.5rem] xl:text-[4rem] leading-tight; }
+  h2 { @apply text-3xl font-bold md:text-4xl lg:text-[2.75rem] xl:text-[3.25rem] leading-tight; }
+  h3 { @apply text-2xl font-semibold md:text-3xl lg:text-[2.25rem] leading-snug; }
+  h4 { @apply text-xl font-semibold md:text-2xl lg:text-[1.75rem] leading-snug; }
 }
-
 
 @layer utilities {
   .flex-center {
@@ -63,7 +69,7 @@ p {
     @apply flex flex-col justify-center items-center;
   }
   .animate-marquee {
-    animation: marqueeAnimation 40s linear infinite;
+    animation: marqueeAnimation 60s linear infinite;
     will-change: transform;
   }
 }
@@ -74,150 +80,196 @@ p {
 }
 
 @layer components {
-  .padding-x {
-    @apply px-6 md:px-10 lg:px-12; /* Ligeramente ajustado */
+  .section-padding {
+    @apply py-16 md:py-20 lg:py-24;
   }
-  .padding-x-lg {
-    @apply px-6 md:px-16 lg:px-24; /* Ligeramente ajustado */
-  }
-  .section-padding { /* Padding estándar para la mayoría de las secciones */
-    @apply py-16 md:py-24;
-  }
-  .container { /* Asegurar que el container de Tailwind tenga un padding por defecto si no se especifica */
-    @apply px-6 sm:px-8;
+  .container {
+    @apply w-full max-w-7xl mx-auto px-6 sm:px-8;
   }
 
   .hero-badge {
     background-color: var(--xaga-gold-dark);
     color: var(--xaga-white);
-    @apply py-2 px-5 rounded-full text-xs sm:text-sm font-medium tracking-wide text-nowrap shadow-md;
+    @apply py-2.5 px-6 rounded-full text-xs sm:text-sm font-semibold tracking-wider text-nowrap shadow-lg;
   }
 
   .navbar {
-    @apply fixed w-full left-1/2 py-4 px-0 -translate-x-1/2 z-[100] transition-all duration-300 ease-in-out;
-    &.scrolled {
-      background-color: rgba(255, 255, 255, 0.95); /* Blanco con ligera transparencia y efecto blur */
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      @apply top-0 shadow-lg;
-    }
-    &.not-scrolled {
-      @apply md:top-4 lg:top-6 top-0 bg-transparent;
-    }
-    .inner { /* Este es el div con class="container" dentro del header de NavBar.jsx */
-      @apply h-full flex items-center justify-between;
-    }
-    .logo img { /* Estilo específico para la imagen del logo en la navbar si es necesario */
-      /* ej: transition: transform 0.3s ease; */
-      /* &:hover { transform: scale(1.05); } */
-    }
-    nav.desktop {
-      @apply hidden lg:flex items-center;
-      ul {
-        @apply flex; /* space-x- se maneja en el componente */
-        li a span:not(.underline) { /* Para el texto del enlace */
-            /* color se maneja dinámicamente en el componente */
-            @apply transition-colors duration-300;
-        }
-        li a:hover span:not(.underline) {
-            color: var(--xaga-gold-dark);
-        }
-        li .underline {
-            background-color: var(--xaga-gold-dark);
-            @apply absolute -bottom-1 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full;
-        }
-      }
-    }
-    .contact-btn .inner { /* El botón de contacto de la navbar desktop */
-      background-color: var(--xaga-gold-dark);
-      color: var(--xaga-white);
-      box-shadow: 0 4px 10px -2px rgba(166, 145, 103, 0.4);
-      @apply px-5 py-2.5 rounded-lg text-sm font-medium tracking-wide transition-all duration-300 ease-out;
-      &:hover {
-        background-color: var(--xaga-gold-medium);
-        transform: translateY(-2px);
-        box-shadow: 0 6px 15px -3px rgba(166, 145, 103, 0.5);
-      }
-    }
+    @apply fixed w-full left-0 top-0 py-3 -translate-x-0 z-[100] transition-all duration-300 ease-in-out;
+  }
+  .navbar.scrolled {
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    @apply shadow-lg;
+  }
+  .navbar.not-scrolled {
+    @apply md:pt-5 lg:pt-6 bg-transparent;
+  }
+  .navbar .inner {
+    @apply h-full flex items-center justify-between;
+  }
+  .navbar nav.desktop ul li a span:not(.underline) {
+    @apply transition-colors duration-200;
+  }
+  .navbar nav.desktop ul li a:hover span:not(.underline) {
+    color: var(--xaga-gold-dark);
+  }
+  .navbar nav.desktop ul li .underline {
+    background-color: var(--xaga-gold-dark);
+    @apply absolute -bottom-1.5 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full;
+  }
+  .navbar .contact-btn .inner {
+    background-color: var(--xaga-gold-light);
+    color: var(--xaga-black);
+    box-shadow: 0 4px 12px -2px rgba(180, 150, 85, 0.3);
+    @apply px-6 py-2.5 rounded-lg text-sm font-semibold tracking-wider transition-all duration-300 ease-out;
+  }
+  .navbar .contact-btn:hover .inner {
+    background-color: var(--xaga-gold-medium);
+    color: var(--xaga-white);
+    transform: translateY(-2px);
+    box-shadow: 0 7px 18px -3px rgba(180, 150, 85, 0.4);
   }
 
-  .cta-button .text { /* Para el texto dentro de los botones CTA generales */
+  .cta-wrapper {
+    @apply relative z-10 block cursor-pointer;
+  }
+  .cta-button {
+    background-color: var(--xaga-gold-dark);
     color: var(--xaga-white);
-    @apply uppercase tracking-wider; /* Ajustado para mejor legibilidad */
+    border-radius: 0.5rem;
+    @apply px-6 py-2.5 
+           rounded-lg 
+           flex justify-center items-center relative overflow-hidden 
+           font-semibold tracking-wide shadow-md;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .cta-button:hover {
+    background-color: var(--xaga-gold-medium);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 20px -4px rgba(166, 145, 103, 0.45);
+  }
+  .cta-button .bg-circle {
+    background-color: var(--xaga-white);
+    @apply absolute -right-6 top-1/2 -translate-y-1/2 w-[150%] h-[150%] rounded-full opacity-0 
+           transition-all duration-600 ease-in-out 
+           group-hover:w-8 group-hover:h-8 group-hover:right-2 group-hover:opacity-10;
+  }
+  .cta-button .text {
+    color: var(--xaga-white);
+    @apply uppercase tracking-wider text-xs sm:text-sm relative z-10 
+           transition-transform duration-400 ease-in-out 
+           group-hover:-translate-x-1.5;
   }
   .cta-button .arrow-wrapper {
-    /* El hover ya se maneja en el componente con estilos en línea */
+    @apply size-7 rounded-full absolute right-1.5 sm:right-2 top-1/2 -translate-y-1/2 
+           flex justify-center items-center overflow-hidden 
+           transition-colors duration-300 ease-in-out;
   }
-  .cta-button .bg-circle { /* Revisar este efecto si se sigue usando */
-      background-color: var(--xaga-gold-medium);
+  .cta-button:hover .arrow-wrapper {
+    background-color: rgba(255,255,255,0.08);
+  }
+  .cta-button .arrow-wrapper img {
+    @apply w-3.5 h-3.5 sm:w-4 sm:h-4 filter invert brightness-0 
+           transition-transform duration-400 ease-out;
+    transform: translateX(150%);
+    opacity: 0;
+  }
+  .cta-button.group:hover .arrow-wrapper img {
+    transform: translateX(0);
+    opacity: 1;
   }
 
-
-  .card-border { /* Clase genérica para tarjetas si la usas */
+  .card-border {
     border: 1px solid var(--xaga-gold-light);
     background-color: var(--xaga-white);
-    @apply rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl;
+    @apply rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:border-[var(--xaga-gold-medium)];
   }
 
-  .marquee-container { /* Contenedor de la marquesina de clientes */
+  .marquee-container {
       @apply mt-12 md:mt-16 relative w-full overflow-hidden;
-      /* height se define inline en el componente */
   }
   .gradient-edge-left {
-    @apply w-20 sm:w-24 md:w-32 h-full absolute left-0 top-0 z-10;
-    background: linear-gradient(to right, var(--xaga-beige) 10%, rgba(228, 232, 238, 0) 100%); /* Asumiendo --xaga-beige-rgb */
+    @apply w-20 sm:w-28 md:w-36 h-full absolute left-0 top-0 z-10 pointer-events-none;
+    background: linear-gradient(to right, var(--xaga-beige) 25%, rgba(var(--xaga-beige-rgb), 0) 100%);
   }
   .gradient-edge-right {
-    @apply w-20 sm:w-24 md:w-32 h-full absolute right-0 top-0 z-10;
-    background: linear-gradient(to left, var(--xaga-beige) 10%, rgba(228, 232, 238, 0) 100%); /* Asumiendo --xaga-beige-rgb */
+    @apply w-20 sm:w-28 md:w-36 h-full absolute right-0 top-0 z-10 pointer-events-none;
+    background: linear-gradient(to left, var(--xaga-beige) 25%, rgba(var(--xaga-beige-rgb), 0) 100%);
   }
   .marquee-item img {
-    filter: grayscale(100%) opacity(0.7);
-    mix-blend-mode: multiply; /* Ayuda a integrar logos con fondo beige */
+    filter: grayscale(100%) opacity(0.65);
+    mix-blend-mode: multiply;
     @apply max-h-full max-w-full object-contain transition-all duration-300 ease-in-out;
-    &:hover {
-      filter: grayscale(0%) opacity(1);
-      mix-blend-mode: normal;
-      transform: scale(1.1);
-    }
+  }
+  .marquee-item:hover img {
+    filter: grayscale(0%) opacity(1);
+    mix-blend-mode: normal;
+    transform: scale(1.1);
   }
 
   form label {
     color: var(--xaga-black);
-    @apply block mb-1.5 text-sm font-medium;
+    @apply block mb-2 text-sm font-semibold;
   }
   form input,
   form textarea {
     background-color: var(--xaga-white);
     border: 1px solid var(--xaga-gold-light);
     color: var(--xaga-black);
-    @apply w-full px-4 py-2.5 text-sm md:text-base rounded-md outline-none transition-all duration-200;
-    &::placeholder {
-      color: var(--xaga-gold-medium);
-      opacity: 0.8;
-    }
-    &:focus {
-      border-color: var(--xaga-gold-dark);
-      box-shadow: 0 0 0 2px rgba(166, 145, 103, 0.3); /* --xaga-gold-dark con opacidad */
-    }
+    @apply w-full px-4 py-3 text-sm md:text-base rounded-lg outline-none shadow-sm
+           transition-all duration-200 ease-in-out;
   }
-  button[type="submit"].button-form, a.button-form { /* Botones de formulario */
+  form input::placeholder,
+  form textarea::placeholder {
+    color: var(--xaga-gold-medium);
+    opacity: 0.7;
+  }
+  form input:focus,
+  form textarea:focus {
+    border-color: var(--xaga-gold-dark);
+    box-shadow: 0 0 0 3px rgba(166, 145, 103, 0.25);
+  }
+  button[type="submit"].button-form, a.button-form {
     background-color: var(--xaga-gold-dark);
     color: var(--xaga-white);
-    box-shadow: 0 4px 10px -2px rgba(166, 145, 103, 0.4);
-    @apply w-full mt-5 py-3 px-5 text-base font-semibold rounded-lg transition-all duration-300 ease-out;
-    &:hover {
-      background-color: var(--xaga-gold-medium);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px -3px rgba(166, 145, 103, 0.5);
-    }
+    box-shadow: 0 4px 14px -2px rgba(166, 145, 103, 0.5);
+    @apply w-full mt-6 py-3.5 px-6 text-base font-semibold rounded-lg transition-all duration-300 ease-out;
+  }
+  button[type="submit"].button-form:hover, a.button-form:hover {
+    background-color: var(--xaga-gold-medium);
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px -3px rgba(166, 145, 103, 0.6);
   }
 
-  .footer-main-class { /* Si usas esta clase en tu <footer> */
-      /* Los estilos de padding, margin, bg y color están inline en tu componente Footer.jsx */
-      /* Puedes añadir otros estilos base aquí si es necesario */
+  .footer-main-class {
   }
-
-  /* Eliminadas clases antiguas no utilizadas o conflictivas como .hero-layout, .hero-text (parcialmente), .timeline, etc.
-     ya que los componentes JSX ahora usan clases de Tailwind directas o estilos inline con variables CSS. */
+  .footer-main-class .container > div {
+    @apply text-center md:text-left;
+  }
+  .footer-main-class h4 {
+    color: var(--xaga-white);
+    @apply font-semibold text-base lg:text-lg mb-3;
+  }
+  .footer-main-class p,
+  .footer-main-class a:not(.social-icon-link) {
+    color: var(--xaga-beige);
+    @apply text-sm leading-relaxed max-w-none;
+  }
+  .footer-main-class a:not(.social-icon-link):hover {
+    color: var(--xaga-gold-medium);
+    @apply underline;
+  }
+  .footer-main-class .social-icon-link {
+    background-color: var(--xaga-gold-dark);
+    @apply p-2.5 rounded-full block transition-all duration-300 ease-out;
+  }
+  .footer-main-class .social-icon-link:hover {
+    background-color: var(--xaga-gold-medium);
+    transform: scale(1.1);
+  }
+  .footer-main-class .social-icon-link img {
+    filter: brightness(0) invert(1);
+    @apply h-4 w-4 sm:h-5 sm:w-5;
+  }
 }
