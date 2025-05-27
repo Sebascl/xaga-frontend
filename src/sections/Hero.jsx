@@ -21,15 +21,15 @@ const Hero = () => {
       tl.to(heroAccentLine, { width: "80px", autoAlpha: 1, duration: 0.8, ease: "power3.out" });
     }
     if (heroTitleLines.length > 0) {
-      tl.to(heroTitleLines, { y: 0, autoAlpha: 1, stagger: 0.2, duration: 1, ease: "power3.out" }, heroAccentLine ? "-=0.6" : 0 );
+      tl.to(heroTitleLines, { y: 0, autoAlpha: 1, stagger: 0.2, duration: 1, ease: "power3.out" }, heroAccentLine ? "-=0.6" : 0);
     }
     if (heroSubtitle) {
-      tl.to(heroSubtitle, { y: 0, autoAlpha: 1, duration: 1, ease: "power3.out" }, "-=0.7" );
+      tl.to(heroSubtitle, { y: 0, autoAlpha: 1, duration: 1, ease: "power3.out" }, "-=0.7");
     }
     if (heroCtaButton) {
-      tl.to(heroCtaButton, { scale: 1, autoAlpha: 1, duration: 0.8, ease: "back.out(1.7)" }, "-=0.6" );
+      tl.to(heroCtaButton, { scale: 1, autoAlpha: 1, duration: 0.8, ease: "back.out(1.7)" }, "-=0.6");
     }
-    
+
     if (heroTitleLines.length > 0) {
       gsap.set(heroTitleLines, { y: 70 });
     }
@@ -39,8 +39,8 @@ const Hero = () => {
     if (heroCtaButton) {
       gsap.set(heroCtaButton, { scale: 0.7 });
     }
-    if(heroAccentLine){
-      gsap.set(heroAccentLine, { width: 0});
+    if (heroAccentLine) {
+      gsap.set(heroAccentLine, { width: 0 });
     }
 
 
@@ -69,7 +69,7 @@ const Hero = () => {
           <div className="flex flex-col gap-6 md:gap-8 items-center">
             <div
               className="hero-accent-line h-1 md:h-[5px] mb-4 md:mb-6 self-center rounded-full"
-              style={{ backgroundColor: 'var(--xaga-gold-dark)'}}
+              style={{ backgroundColor: 'var(--xaga-gold-dark)' }}
             ></div>
             <div className="hero-text space-y-2 md:space-y-3">
               <h1
@@ -95,7 +95,7 @@ const Hero = () => {
               <Button
                 text="Contáctanos Hoy"
                 targetId="contacto"
-                className="md:w-80 md:h-16 w-full max-w-xs h-14 text-lg md:text-xl"
+                className="font-semibold"
               />
             </div>
           </div>

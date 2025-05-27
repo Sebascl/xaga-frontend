@@ -132,53 +132,43 @@ p {
   }
 
   .cta-wrapper {
-    @apply relative z-10 block cursor-pointer;
+    @apply relative z-10 block cursor-pointer; /* Contenedor del botón <a> */
   }
+
   .cta-button {
     background-color: var(--xaga-gold-dark);
     color: var(--xaga-white);
-    border-radius: 0.5rem;
-    @apply px-6 py-2.5 
-           rounded-lg 
-           flex justify-center items-center relative overflow-hidden 
-           font-semibold tracking-wide shadow-md;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid transparent; /* Borde inicial transparente */
+    border-radius: 0.5rem; /* Esquinas redondeadas (rounded-lg) */
+    @apply inline-flex items-center justify-center 
+           px-6 py-2.5 /* Padding para controlar tamaño (más pequeño) */
+           font-semibold tracking-wide 
+           shadow-md hover:shadow-lg
+           transition-all duration-300 ease-out; /* Transición suave para todos los cambios */
   }
+
   .cta-button:hover {
     background-color: var(--xaga-gold-medium);
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 8px 20px -4px rgba(166, 145, 103, 0.45);
+    transform: translateY(-2px); /* Efecto de elevación sutil */
+    border-color: var(--xaga-gold-dark); /* Borde visible en hover */
+    box-shadow: 0 8px 20px -4px rgba(var(--xaga-gold-dark-rgb, 166,145,103), 0.4); /* Sombra más pronunciada */
   }
-  .cta-button .bg-circle {
-    background-color: var(--xaga-white);
-    @apply absolute -right-6 top-1/2 -translate-y-1/2 w-[150%] h-[150%] rounded-full opacity-0 
-           transition-all duration-600 ease-in-out 
-           group-hover:w-8 group-hover:h-8 group-hover:right-2 group-hover:opacity-10;
+
+  .cta-button .cta-button-text { /* Clase para el texto dentro del botón */
+    @apply text-sm sm:text-base leading-none; /* Tamaño de fuente y altura de línea ajustados */
   }
-  .cta-button .text {
-    color: var(--xaga-white);
-    @apply uppercase tracking-wider text-xs sm:text-sm relative z-10 
-           transition-transform duration-400 ease-in-out 
-           group-hover:-translate-x-1.5;
+
+  .cta-button .cta-button-arrow { /* Clase para la flecha opcional */
+    @apply ml-2 transition-transform duration-300 ease-out;
   }
-  .cta-button .arrow-wrapper {
-    @apply size-7 rounded-full absolute right-1.5 sm:right-2 top-1/2 -translate-y-1/2 
-           flex justify-center items-center overflow-hidden 
-           transition-colors duration-300 ease-in-out;
+
+  .cta-button:hover .cta-button-arrow {
+    transform: translateX(4px); /* Flecha se mueve a la derecha en hover */
   }
-  .cta-button:hover .arrow-wrapper {
-    background-color: rgba(255,255,255,0.08);
-  }
-  .cta-button .arrow-wrapper img {
-    @apply w-3.5 h-3.5 sm:w-4 sm:h-4 filter invert brightness-0 
-           transition-transform duration-400 ease-out;
-    transform: translateX(150%);
-    opacity: 0;
-  }
-  .cta-button.group:hover .arrow-wrapper img {
-    transform: translateX(0);
-    opacity: 1;
-  }
+  
+  /* Se eliminan los estilos para .bg-circle y la animación compleja de la flecha anterior,
+     ya que estamos optando por un diseño de botón más limpio y directo. */
+
 
   .card-border {
     border: 1px solid var(--xaga-gold-light);
