@@ -4,7 +4,7 @@ import { gsap } from "gsap";
 const VisaDetailModal = ({ visa, isOpen, onClose }) => {
   const modalRef = useRef(null);
   const backdropRef = useRef(null);
-  const primaryWhatsAppNumber = "528110302865"; // Número principal para contacto por WhatsApp
+  const primaryWhatsAppNumber = "528110302865";
 
   useEffect(() => {
     if (isOpen) {

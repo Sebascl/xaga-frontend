@@ -46,8 +46,8 @@ const NuestrosClientes = () => {
   }, { scope: sectionRef });
 
   const xagaBeigeColor = "var(--xaga-beige)";
-  const xagaBeigeRgbForGradient = "228, 232, 238"; // Asumiendo que --xaga-beige es #e4e8ee
-
+  const xagaBeigeRgbForGradient = "228, 232, 238";
+  
   return (
     <section
       id="clientes"
@@ -61,7 +61,7 @@ const NuestrosClientes = () => {
           sub="Confían en Nuestra Experiencia y Resultados"
         />
         <div
-          className="marquee-container relative w-full overflow-hidden"
+          className="relative w-full overflow-hidden"
           style={{ height: '12rem' }} 
         >
           <div

@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -51,7 +51,7 @@ const MisionVision = () => {
               gsap.to(cardContent, {
                 opacity: 1,
                 y: 0,
-                duration: 0.7,
+                duration: 0.3,
                 stagger: 0.1,
                 ease: 'power2.out'
               });

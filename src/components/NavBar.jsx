@@ -18,6 +18,7 @@ const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mobileMenuRef = useRef(null);
+  const headerRef = useRef(null); // Ref para el <header> para obtener su altura
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,6 +33,9 @@ const NavBar = () => {
 
   useEffect(() => {
     const currentMenu = mobileMenuRef.current;
+    if (!currentMenu) return;
+    gsap.killTweensOf(currentMenu);
+
     if (isMobileMenuOpen) {
       currentMenu.style.display = 'flex';
       gsap.fromTo(currentMenu,
@@ -40,12 +44,16 @@ const NavBar = () => {
       );
       document.body.style.overflow = 'hidden';
     } else {
-      gsap.to(currentMenu,
-        { x: '100%', opacity: 0, duration: 0.4, ease: 'power3.in', onComplete: () => {
+      gsap.to(currentMenu, {
+        x: '100%',
+        opacity: 0,
+        duration: 0.4,
+        ease: 'power3.in',
+        onComplete: () => {
           if (currentMenu) currentMenu.style.display = 'none';
-        }}
-      );
-      document.body.style.overflow = 'auto';
+          document.body.style.overflow = 'auto';
+        }
+      });
     }
     return () => {
       document.body.style.overflow = 'auto';
@@ -56,8 +64,32 @@ const NavBar = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
   
-  const closeMobileMenu = () => {
+  const closeMobileMenuOnly = () => {
     setIsMobileMenuOpen(false);
+  };
+
+  const handleNavLinkClick = (e, targetId) => {
+    e.preventDefault();
+    if (isMobileMenuOpen) {
+      closeMobileMenuOnly();
+    }
+
+    const id = targetId.startsWith("#") ? targetId.substring(1) : targetId;
+    const targetElement = document.getElementById(id);
+
+    if (targetElement) {
+      const navbarHeight = headerRef.current ? headerRef.current.offsetHeight : 0;
+      const extraOffset = 20; // Un pequeño offset adicional si quieres más espacio
+      const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - navbarHeight - extraOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    } else if (targetId === "#hero") {
+        window.scrollTo({ top: 0, behavior: 'smooth'});
+    }
   };
 
   const navBarDynamicClasses = scrolled
@@ -69,13 +101,14 @@ const NavBar = () => {
 
   return (
     <header
+      ref={headerRef} // Añadido ref aquí
       className={`fixed w-full left-0 top-0 z-[100] transition-all duration-300 ease-in-out ${navBarDynamicClasses}`}
       style={{ paddingLeft: 'calc(max(1.25rem, env(safe-area-inset-left)))', paddingRight: 'calc(max(1.25rem, env(safe-area-inset-right)))' }}
     >
       <div
         className="container mx-auto flex items-center justify-between h-20 md:h-24 transition-all duration-300"
       >
-        <a href="#hero" className="logo z-[101]" onClick={closeMobileMenu}>
+        <a href="#hero" className="logo z-[101]" onClick={(e) => handleNavLinkClick(e, "#hero")}>
           <img
             src="/images/logo_xaga.png"
             alt="XAGA Abogados Logo"
@@ -89,6 +122,7 @@ const NavBar = () => {
             <li key={name} className="group list-none">
               <a
                 href={link}
+                onClick={(e) => handleNavLinkClick(e, link)}
                 className="text-base font-medium relative pb-1"
                 style={{ color: desktopLinkColor }}
                 onMouseEnter={e => e.currentTarget.style.color = 'var(--xaga-gold-dark)'}
@@ -107,6 +141,7 @@ const NavBar = () => {
         <div className="hidden lg:flex">
           <a
             href="#contacto"
+            onClick={(e) => handleNavLinkClick(e, "#contacto")}
             className="px-6 py-3 rounded-lg text-base font-medium transition-colors duration-300"
             style={{ backgroundColor: 'var(--xaga-gold-dark)', color: 'var(--xaga-white)'}}
             onMouseEnter={e => e.currentTarget.style.backgroundColor = 'var(--xaga-gold-medium)'}
@@ -142,24 +177,24 @@ const NavBar = () => {
           paddingTop: 'calc(6rem + env(safe-area-inset-top))',
           paddingBottom: 'env(safe-area-inset-bottom)',
         }}
-        onClick={(e) => { if (e.target === mobileMenuRef.current) closeMobileMenu();}}
+        onClick={(e) => { if (e.target === mobileMenuRef.current) closeMobileMenuOnly();}}
       >
         {navLinks.map(({ link, name }) => (
           <a
             key={name}
             href={link}
+            onClick={(e) => handleNavLinkClick(e, link)}
             className="block text-2xl font-medium text-center py-3"
             style={{ color: 'var(--xaga-white)' }}
-            onClick={closeMobileMenu}
           >
             {name}
           </a>
         ))}
         <a
           href="#contacto"
+          onClick={(e) => handleNavLinkClick(e, "#contacto")}
           className="mt-8 inline-block px-8 py-4 rounded-lg text-lg font-medium"
           style={{ backgroundColor: 'var(--xaga-gold-dark)', color: 'var(--xaga-white)' }}
-          onClick={closeMobileMenu}
         >
           Contáctanos
         </a>
