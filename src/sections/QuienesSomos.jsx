@@ -2,22 +2,23 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { useTranslation, Trans } from "react-i18next";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const QuienesSomos = () => {
+  const { t } = useTranslation();
+  
   const sectionRef = useRef(null);
   const imageContainerRef = useRef(null);
   const contentRef = useRef(null);
   const titleRef = useRef(null);
-  const founderRef = useRef(null);
   const textRef = useRef(null);
 
   useGSAP(() => {
     const section = sectionRef.current;
     const imageContainer = imageContainerRef.current;
     const title = titleRef.current;
-    const founder = founderRef.current;
     const mainText = textRef.current;
     const accentLine = section.querySelector('.title-accent-line');
 
@@ -34,11 +35,9 @@ const QuienesSomos = () => {
     if (imageContainer) {
       tl.fromTo(imageContainer,
         { opacity: 0, scale: 0.9, y: 30 },
-        { opacity: 1, scale: 1, y: 0, duration: 0.9, ease: "power3.out" },
-        "start"
+        { opacity: 1, scale: 1, y: 0, duration: 0.9, ease: "power3.out" }, "start"
       );
     }
-
     if (accentLine) {
       tl.fromTo(accentLine,
         { width: 0 },
@@ -46,23 +45,15 @@ const QuienesSomos = () => {
         imageContainer ? "-=0.5" : "start+=0.2"
       );
     }
-    
     tl.fromTo(title,
       { opacity: 0, x: -40 },
       { opacity: 1, x: 0, duration: 0.8, ease: "power3.out" },
       imageContainer ? "-=0.4" : "start+=0.2"
-    )
-    .fromTo(founder,
-      { opacity: 0, x: -40 },
-      { opacity: 1, x: 0, duration: 0.7, ease: "power2.out" },
-      "-=0.6"
-    )
-    .fromTo(mainText,
+    ).fromTo(mainText,
       { opacity: 0, y: 40 },
       { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
       "-=0.5"
     );
-
   }, { scope: sectionRef });
 
   return (
@@ -84,13 +75,12 @@ const QuienesSomos = () => {
           >
             <div
               className="relative w-full aspect-[4/3] md:aspect-auto md:h-[450px] lg:h-[400px] rounded-xl shadow-2xl overflow-hidden border-4 border-solid"
-              style={{
-                borderColor: 'var(--xaga-gold-medium)',
-              }}
+              style={{ borderColor: 'var(--xaga-gold-medium)' }}
             >
               <img
                 src="/images/quienes-somos.jpg" 
-                alt="Equipo y valores de XAGA Abogados"
+                // 3. Usar t() para el texto alternativo de la imagen
+                alt={t('aboutUs.imageAlt')}
                 className="w-full h-full object-cover object-bottom"
                 style={{ objectPosition: 'center 85%' }}
               />
@@ -111,7 +101,7 @@ const QuienesSomos = () => {
               className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 uppercase tracking-wider"
               style={{ color: 'var(--xaga-gold-dark)' }}
             >
-              ¿QUIÉNES SOMOS?
+              {t('navbar.links.about')}
             </h2>
             <div
               ref={textRef}
@@ -119,14 +109,16 @@ const QuienesSomos = () => {
               style={{ color: 'var(--xaga-black)'}} 
             >
               <p>
-                Con más de 20 años de experiencia,{' '}
-                <strong style={{ color: 'var(--xaga-gold-dark)' }}>
-                  XAGA Abogados
-                </strong>{' '}
-                es un despacho líder, comprometido con la excelencia y dedicados a brindar asesoría jurídica integral.
+                <Trans i18nKey="aboutUs.paragraph1">
+                  Con más de 20 años de experiencia,{' '}
+                  <strong style={{ color: 'var(--xaga-gold-dark)' }}>
+                    XAGA Abogados
+                  </strong>{' '}
+                  es un despacho líder, comprometido con la excelencia y dedicados a brindar asesoría jurídica integral.
+                </Trans>
               </p>
               <p>
-                Contamos con una establecida reputación, ya que prestamos nuestros servicios legales de manera oportuna a cada uno de nuestros clientes.
+                {t('aboutUs.paragraph2')}
               </p>
             </div>
           </div>

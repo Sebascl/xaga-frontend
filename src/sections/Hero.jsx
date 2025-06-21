@@ -1,10 +1,10 @@
-// Hero.jsx
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Button from "../components/Button";
 import { useRef } from "react";
-
+import { useTranslation } from "react-i18next";
 const Hero = () => {
+  const { t } = useTranslation();
   const sectionRef = useRef(null);
 
   useGSAP(() => {
@@ -14,9 +14,7 @@ const Hero = () => {
     const heroCtaButton = sectionRef.current.querySelector(".hero-cta-button");
 
     gsap.set([heroAccentLine, ...heroTitleLines, heroSubtitle, heroCtaButton], { autoAlpha: 0 });
-
     const tl = gsap.timeline({ delay: 0.3 });
-
     if (heroAccentLine) {
       tl.to(heroAccentLine, { width: "80px", autoAlpha: 1, duration: 0.8, ease: "power3.out" });
     }
@@ -29,7 +27,6 @@ const Hero = () => {
     if (heroCtaButton) {
       tl.to(heroCtaButton, { scale: 1, autoAlpha: 1, duration: 0.8, ease: "back.out(1.7)" }, "-=0.6");
     }
-
     if (heroTitleLines.length > 0) {
       gsap.set(heroTitleLines, { y: 70 });
     }
@@ -42,7 +39,6 @@ const Hero = () => {
     if (heroAccentLine) {
       gsap.set(heroAccentLine, { width: 0 });
     }
-
 
   }, { scope: sectionRef, dependencies: [] });
 
@@ -76,24 +72,24 @@ const Hero = () => {
                 className="hero-title-line text-4xl sm:text-5xl md:text-6xl lg:text-[80px] font-bold leading-tight"
                 style={{ color: 'var(--xaga-white)', textShadow: textShadowStyle, letterSpacing: '-0.02em' }}
               >
-                XAGA Abogados
+                {t('hero.mainTitle')}
               </h1>
               <h2
                 className="hero-title-line text-3xl sm:text-4xl md:text-5xl lg:text-[50px] font-semibold leading-tight"
                 style={{ color: 'var(--xaga-gold-dark)', textShadow: textShadowStyle, letterSpacing: '-0.01em' }}
               >
-                Defensa Legal, Resultados Reales.
+                {t('hero.tagline')}
               </h2>
             </div>
             <p
               className="hero-subtitle text-lg md:text-xl lg:text-2xl max-w-2xl leading-relaxed md:leading-loose mt-4"
               style={{ color: 'var(--xaga-beige)', textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}
             >
-              Comprometidos con la excelencia y la protección de sus derechos. Su confianza es nuestro mayor compromiso.
+              {t('hero.subtitle')}
             </p>
             <div className="hero-cta-button mt-8 md:mt-10">
               <Button
-                text="Contáctanos Hoy"
+                text={t('hero.ctaButton')}
                 targetId="contacto"
                 className="font-semibold"
               />

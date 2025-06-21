@@ -3,34 +3,33 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import TitleHeader from '../components/TitleHeader';
+import { useTranslation } from 'react-i18next';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const strengthsData = [
-  { id: 'equipo', iconText: "👥", title: "Equipo Calificado", detail: "Expertos legales con una trayectoria sólida y profundo conocimiento en diversas áreas del derecho." },
-  { id: 'resultados', iconText: "📈", title: "Resultados Comprobados", detail: "Un historial de éxito y casos resueltos favorablemente que respaldan nuestra eficacia." },
-  { id: 'atencion', iconText: "🤝", title: "Atención Personalizada", detail: "Brindamos soluciones legales adaptadas a sus necesidades específicas, con un trato cercano y dedicado." },
-  { id: 'etica', iconText: "⚖️", title: "Ética Sólida", detail: "Actuamos con un compromiso inquebrantable con la integridad, la transparencia y la justicia." }
-];
-
 const ChooseUs = () => {
+  const { t } = useTranslation();
   const sectionRef = useRef(null);
   const mainTextRef = useRef(null);
   const strengthsGridRef = useRef(null);
   const conclusionTextRef = useRef(null);
+  
+  const strengthIcons = {
+    equipo: "👥",
+    resultados: "📈",
+    atencion: "🤝",
+    etica: "⚖️"
+  };
+
+  const strengthsData = t('whyChooseUs.strengths', { returnObjects: true }).map(strength => ({
+    ...strength,
+    iconText: strengthIcons[strength.id] || "❓"
+  }));
 
   useGSAP(() => {
     const section = sectionRef.current;
     if (!section) return;
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: "top 75%",
-        toggleActions: "play none none none"
-      }
-    });
-
+    const tl = gsap.timeline({ scrollTrigger: { trigger: section, start: "top 75%", toggleActions: "play none none none" }});
     const mainText = mainTextRef.current;
     const strengthCards = gsap.utils.toArray(strengthsGridRef.current?.children || []);
     const conclusionText = conclusionTextRef.current;
@@ -39,11 +38,7 @@ const ChooseUs = () => {
       tl.fromTo(mainText, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' });
     }
     if (strengthCards.length > 0) {
-      tl.fromTo(strengthCards, 
-        { opacity: 0, y: 40, scale: 0.9 }, 
-        { opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.15, ease: 'power3.out' }, 
-        mainText ? "-=0.5" : 0
-      );
+      tl.fromTo(strengthCards, { opacity: 0, y: 40, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.15, ease: 'power3.out' }, mainText ? "-=0.5" : 0);
     }
     if (conclusionText) {
       tl.fromTo(conclusionText, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, "-=0.3");
@@ -73,8 +68,8 @@ const ChooseUs = () => {
     >
       <div className="container mx-auto px-6 lg:px-8">
         <TitleHeader
-          title="¿POR QUÉ ELEGIRNOS?"
-          sub="Nuestra Promesa de Valor y Compromiso"
+          title={t('navbar.links.chooseUs')}
+          sub={t('whyChooseUs.subtitle')}
         />
 
         <div
@@ -85,7 +80,7 @@ const ChooseUs = () => {
             className="leading-relaxed"
             style={{ color: 'var(--xaga-black)' }}
           >
-            En XAGA Abogados, nuestro compromiso es la entera satisfacción de nuestros clientes. Contamos con equipo altamente calificado, valores, historial de éxitos comprobados, atención personalizada, costos competitivos, eficiencia en la gestión de asuntos y una sólida ética.
+            {t('whyChooseUs.mainParagraph')}
           </p>
         </div>
 
@@ -93,6 +88,7 @@ const ChooseUs = () => {
           ref={strengthsGridRef}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 md:gap-10 mt-12 md:mt-16 max-w-4xl mx-auto"
         >
+          {/* Se usa el nuevo strengthsData dinámico */}
           {strengthsData.map((strength) => (
             <div
               key={strength.id}
@@ -135,7 +131,7 @@ const ChooseUs = () => {
             className="text-xl md:text-2xl font-semibold leading-relaxed"
             style={{ color: 'var(--xaga-gold-medium)' }}
           >
-            Confía en nosotros, estamos aquí para ayudarte en cada paso del camino.
+            {t('whyChooseUs.conclusion')}
           </p>
         </div>
       </div>

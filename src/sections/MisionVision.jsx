@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import TitleHeader from "../components/TitleHeader";
+import { useTranslation } from "react-i18next";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,22 +20,17 @@ const LightbulbIcon = (props) => (
 );
 
 const MisionVision = () => {
+  const { t } = useTranslation();
   const sectionRef = useRef(null);
   const misionCardRef = useRef(null);
   const visionCardRef = useRef(null);
 
-  const misionText = "Proporcionar asesoría legal estratégica e integral de manera eficaz y especializada en asuntos de derecho penal, civil y mercantil, comprometidos en todos los casos a ofrecerle a nuestros clientes el apoyo necesario para la búsqueda de justicia y resolución de conflictos legales.";
-  const visionText = "Ser lideres en el campo legal, destacando nuestro compromiso, resultados exitosos y amplia experiencia. Buscamos ser reconocidos como los mejores aliados de nuestros clientes para alcanzar sus objetivos en el ámbito legal.";
-
   useGSAP(() => {
     const cardsToAnimate = [misionCardRef.current, visionCardRef.current].filter(Boolean);
-
     cardsToAnimate.forEach((card, index) => {
-      gsap.set(card, { opacity: 0, y: 70, scale: 0.9 }); 
-      
+      gsap.set(card, { opacity: 0, y: 70, scale: 0.9 });
       const cardContent = card.querySelectorAll('.card-content-animate');
       gsap.set(cardContent, { opacity: 0, y: 25 });
-
       ScrollTrigger.create({
         trigger: card,
         start: "top 85%",
@@ -62,7 +58,6 @@ const MisionVision = () => {
     });
   }, { scope: sectionRef, dependencies: [] });
 
-
   const cardBaseStyle = {
     backgroundColor: "var(--xaga-white)",
     borderRadius: "1rem",
@@ -79,20 +74,17 @@ const MisionVision = () => {
     boxShadow: "0 20px 30px -10px rgba(166,145,103,0.2), 0 10px 15px -10px rgba(166,145,103,0.15)",
   };
 
-
   return (
     <section
       id="mision-vision"
       ref={sectionRef}
       className="py-10 md:py-14"
-      style={{
-        backgroundColor: "var(--xaga-beige)",
-      }}
+      style={{ backgroundColor: "var(--xaga-beige)" }}
     >
       <div className="container mx-auto px-6 lg:px-8">
         <TitleHeader
-          title="Nuestra Filosofía"
-          sub="Compromiso y Dirección Estratégica"
+          title={t('missionVision.title')}
+          sub={t('missionVision.subtitle')}
         />
 
         <div className="mt-12 md:mt-18 grid md:grid-cols-2 gap-10 md:gap-16 items-stretch">
@@ -108,10 +100,10 @@ const MisionVision = () => {
                 <PuzzleIcon style={{ color: "var(--xaga-gold-dark)" }} />
               </div>
               <h3 className="card-content-animate text-2xl lg:text-3xl font-semibold mb-4" style={{ color: "var(--xaga-gold-dark)" }}>
-                Misión
+                {t('missionVision.missionTitle')}
               </h3>
               <p className="card-content-animate text-base md:text-lg leading-relaxed text-left" style={{ color: "var(--xaga-black)" }}>
-                {misionText}
+                {t('missionVision.missionText')}
               </p>
             </div>
           </div>
@@ -128,10 +120,10 @@ const MisionVision = () => {
                 <LightbulbIcon style={{ color: "var(--xaga-gold-dark)" }} />
               </div>
               <h3 className="card-content-animate text-2xl lg:text-3xl font-semibold mb-4" style={{ color: "var(--xaga-gold-dark)" }}>
-                Visión
+                {t('missionVision.visionTitle')}
               </h3>
               <p className="card-content-animate text-base md:text-lg leading-relaxed text-left" style={{ color: "var(--xaga-black)" }}>
-                {visionText}
+                {t('missionVision.visionText')}
               </p>
             </div>
           </div>

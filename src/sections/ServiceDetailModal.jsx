@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { useTranslation } from 'react-i18next';
 
 const ServiceDetailModal = ({ service, isOpen, onClose }) => {
+  const { t } = useTranslation();
   const modalRef = useRef(null);
   const backdropRef = useRef(null);
   const primaryWhatsAppNumber = "528110302865";
@@ -11,7 +13,6 @@ const ServiceDetailModal = ({ service, isOpen, onClose }) => {
     const currentBackdrop = backdropRef.current;
 
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
       gsap.to(currentBackdrop, { opacity: 1, duration: 0.3 });
       gsap.fromTo(currentModal,
         { opacity: 0, scale: 0.9, y: -30 },
@@ -23,16 +24,10 @@ const ServiceDetailModal = ({ service, isOpen, onClose }) => {
         scale: 0.9, 
         y: -30, 
         duration: 0.3, 
-        ease: 'power3.in',
-        onComplete: () => {
-          document.body.style.overflow = 'auto';
-        }
+        ease: 'power3.in'
       });
       gsap.to(currentBackdrop, { opacity: 0, duration: 0.3, delay: 0.1 });
     }
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
   }, [isOpen]);
 
   if (!isOpen || !service) return null;
@@ -80,7 +75,7 @@ const ServiceDetailModal = ({ service, isOpen, onClose }) => {
             style={{ backgroundColor: 'rgba(0,0,0,0.5)', color: 'var(--xaga-white)' }}
             onMouseEnter={e => e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.8)'}
             onMouseLeave={e => e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.5)'}
-            aria-label="Cerrar modal"
+            aria-label={t('services.modal.closeAriaLabel')}
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.364 5.636a1 1 0 00-1.414 0L12 10.586 7.05 5.636a1 1 0 10-1.414 1.414L10.586 12l-4.95 4.95a1 1 0 101.414 1.414L12 13.414l4.95 4.95a1 1 0 001.414-1.414L13.414 12l4.95-4.95a1 1 0 000-1.414z"/></svg>
           </button>
@@ -98,19 +93,21 @@ const ServiceDetailModal = ({ service, isOpen, onClose }) => {
              <p className="text-base text-gray-700 mb-5 leading-relaxed">{service.introduction}</p>
           )}
 
-          <h3 className="text-lg font-semibold mb-2" style={{color: 'var(--xaga-gold-dark)'}}>Servicios Detallados:</h3>
+          <h3 className="text-lg font-semibold mb-2" style={{color: 'var(--xaga-gold-dark)'}}>
+            {t('services.modal.detailedTitle')}
+          </h3>
           <ul className="list-disc list-inside space-y-2 text-sm md:text-base mb-8" style={{color: 'var(--xaga-black)'}}>
-            {service.items.map((item, index) => (
+            {service.items && service.items.map((item, index) => (
               <li key={index} className="leading-normal">{item}</li>
             ))}
           </ul>
 
           <div className="mt-6 pt-6 border-t" style={{borderColor: 'var(--xaga-gold-light)'}}>
             <h4 className="text-lg font-semibold mb-3" style={{color: 'var(--xaga-gold-dark)'}}>
-              ¿Necesitas Asesoría en {service.category}?
+              {t('services.modal.contactTitle', { category: service.category })}
             </h4>
             <p className="text-sm text-gray-700 mb-4">
-              Contáctanos directamente para una consulta personalizada sobre tu caso o necesidades.
+              {t('services.modal.contactParagraph')}
             </p>
             <a
               href={`https://wa.me/${primaryWhatsAppNumber}?text=Hola,%20me%20interesa%20obtener%20más%20información%20sobre%20sus%20servicios%20de%20${encodeURIComponent(service.category)}.`}
@@ -121,7 +118,7 @@ const ServiceDetailModal = ({ service, isOpen, onClose }) => {
               onMouseEnter={e => Object.assign(e.currentTarget.style, hoverButtonStyle)}
               onMouseLeave={e => Object.assign(e.currentTarget.style, baseButtonStyle)}
             >
-              Consulta Personalizada
+              {t('services.modal.contactButton')}
             </a>
           </div>
         </div>

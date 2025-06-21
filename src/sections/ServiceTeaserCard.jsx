@@ -1,13 +1,16 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const ServiceTeaserCard = ({ service, onClick }) => {
+  const { t } = useTranslation();
+
   return (
     <button
       onClick={onClick}
       className="w-full h-72 md:h-80 rounded-xl overflow-hidden relative group focus:outline-none focus:ring-2"
       style={{
         boxShadow: '0 10px 20px -5px rgba(0,0,0,0.07), 0 4px 8px -6px rgba(0,0,0,0.04)',
-        borderColor: 'var(--xaga-gold-light)', // Borde inicial más sutil
+        borderColor: 'var(--xaga-gold-light)',
         borderWidth: '1px',
         borderStyle: 'solid',
         transition: 'transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease'
@@ -22,7 +25,7 @@ const ServiceTeaserCard = ({ service, onClick }) => {
         e.currentTarget.style.boxShadow = '0 10px 20px -5px rgba(0,0,0,0.07), 0 4px 8px -6px rgba(0,0,0,0.04)';
         e.currentTarget.style.borderColor = 'var(--xaga-gold-light)';
       }}
-      aria-label={`Ver detalles de ${service.category}`}
+      aria-label={t('services.teaser.ariaLabel', { category: service.category })}
     >
       <img
         src={service.imagePath}
@@ -35,7 +38,7 @@ const ServiceTeaserCard = ({ service, onClick }) => {
           background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.0) 100%)',
         }}
       >
-        <div /> {/* Espaciador para empujar el contenido hacia abajo */}
+        <div />
         <div>
           <h3
             className="text-xl lg:text-2xl font-semibold tracking-tight mb-2"
@@ -50,7 +53,7 @@ const ServiceTeaserCard = ({ service, onClick }) => {
               backgroundColor: 'var(--xaga-gold-light)',
             }}
           >
-            Ver Detalles
+            {t('services.teaser.buttonText')}
             <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
           </div>
         </div>

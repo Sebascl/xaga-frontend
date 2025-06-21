@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { navLinks } from "../constants";
 import { gsap } from "gsap";
+import { useTranslation } from "react-i18next";
 
 const MenuIcon = (props) => (
   <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -15,10 +15,17 @@ const CloseIcon = (props) => (
 );
 
 const NavBar = () => {
+  const { t, i18n } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mobileMenuRef = useRef(null);
-  const headerRef = useRef(null); // Ref para el <header> para obtener su altura
+  const headerRef = useRef(null);
+
+  const navLinks = [
+    { id: 'quienes-somos', key: 'about' },
+    { id: 'servicios', key: 'services' },
+    { id: 'tramites-visa', key: 'visas' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -79,17 +86,37 @@ const NavBar = () => {
 
     if (targetElement) {
       const navbarHeight = headerRef.current ? headerRef.current.offsetHeight : 0;
-      const extraOffset = 20; // Un pequeño offset adicional si quieres más espacio
+      const extraOffset = 20;
       const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
       const offsetPosition = elementPosition - navbarHeight - extraOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
     } else if (targetId === "#hero") {
-        window.scrollTo({ top: 0, behavior: 'smooth'});
+      window.scrollTo({ top: 0, behavior: 'smooth'});
     }
+  };
+
+  const LanguageSwitcher = ({ forMobile }) => {
+    const activeLangClass = "font-bold text-[var(--xaga-gold-dark)]";
+    const inactiveLangClass = "opacity-70 hover:opacity-100";
+    const baseClasses = "cursor-pointer transition-opacity duration-200";
+
+    if (forMobile) {
+      return (
+        <div className="flex items-center space-x-4 mt-8 text-xl text-[var(--xaga-white)]">
+          <span onClick={() => i18n.changeLanguage('es')} className={`${baseClasses} ${i18n.language === 'es' ? 'font-bold text-[var(--xaga-gold-medium)]' : inactiveLangClass}`}>ES</span>
+          <span className="opacity-50">|</span>
+          <span onClick={() => i18n.changeLanguage('en')} className={`${baseClasses} ${i18n.language === 'en' ? 'font-bold text-[var(--xaga-gold-medium)]' : inactiveLangClass}`}>EN</span>
+        </div>
+      );
+    }
+
+    return (
+      <div className="flex items-center space-x-2 text-sm font-medium" style={{ color: desktopLinkColor }}>
+        <span onClick={() => i18n.changeLanguage('es')} className={`${baseClasses} ${i18n.language === 'es' ? activeLangClass : inactiveLangClass}`}>ES</span>
+        <span className="opacity-50">|</span>
+        <span onClick={() => i18n.changeLanguage('en')} className={`${baseClasses} ${i18n.language === 'en' ? activeLangClass : inactiveLangClass}`}>EN</span>
+      </div>
+    );
   };
 
   const navBarDynamicClasses = scrolled
@@ -101,7 +128,7 @@ const NavBar = () => {
 
   return (
     <header
-      ref={headerRef} // Añadido ref aquí
+      ref={headerRef}
       className={`fixed w-full left-0 top-0 z-[100] transition-all duration-300 ease-in-out ${navBarDynamicClasses}`}
       style={{ paddingLeft: 'calc(max(1.25rem, env(safe-area-inset-left)))', paddingRight: 'calc(max(1.25rem, env(safe-area-inset-right)))' }}
     >
@@ -111,24 +138,24 @@ const NavBar = () => {
         <a href="#hero" className="logo z-[101]" onClick={(e) => handleNavLinkClick(e, "#hero")}>
           <img
             src="/images/logo_xaga.png"
-            alt="XAGA Abogados Logo"
+            alt={t('navbar.logoAlt')}
             className="h-10 md:h-12 w-auto"
             style={{ filter: (isMobileMenuOpen && !scrolled) ? 'brightness(0) invert(1)' : 'none' }}
           />
         </a>
 
         <nav className="hidden lg:flex items-center space-x-8">
-          {navLinks.map(({ link, name }) => (
-            <li key={name} className="group list-none">
+          {navLinks.map(({ id, key }) => (
+            <li key={id} className="group list-none">
               <a
-                href={link}
-                onClick={(e) => handleNavLinkClick(e, link)}
+                href={`#${id}`}
+                onClick={(e) => handleNavLinkClick(e, `#${id}`)}
                 className="text-base font-medium relative pb-1"
                 style={{ color: desktopLinkColor }}
                 onMouseEnter={e => e.currentTarget.style.color = 'var(--xaga-gold-dark)'}
                 onMouseLeave={e => e.currentTarget.style.color = desktopLinkColor}
               >
-                <span>{name}</span>
+                <span>{t(`navbar.links.${key}`)}</span>
                 <span
                   className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full"
                   style={{ backgroundColor: 'var(--xaga-gold-dark)' }}
@@ -138,7 +165,8 @@ const NavBar = () => {
           ))}
         </nav>
 
-        <div className="hidden lg:flex">
+        <div className="hidden lg:flex items-center space-x-6">
+          <LanguageSwitcher />
           <a
             href="#contacto"
             onClick={(e) => handleNavLinkClick(e, "#contacto")}
@@ -147,14 +175,14 @@ const NavBar = () => {
             onMouseEnter={e => e.currentTarget.style.backgroundColor = 'var(--xaga-gold-medium)'}
             onMouseLeave={e => e.currentTarget.style.backgroundColor = 'var(--xaga-gold-dark)'}
           >
-            Contáctanos
+            {t('navbar.contact')}
           </a>
         </div>
 
         <div className="lg:hidden z-[101]">
           <button
             onClick={toggleMobileMenu}
-            aria-label={isMobileMenuOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
+            aria-label={t(isMobileMenuOpen ? 'navbar.closeMenuAria' : 'navbar.openMenuAria')}
             aria-expanded={isMobileMenuOpen}
             className="p-2"
             style={{ color: iconColor }}
@@ -179,15 +207,15 @@ const NavBar = () => {
         }}
         onClick={(e) => { if (e.target === mobileMenuRef.current) closeMobileMenuOnly();}}
       >
-        {navLinks.map(({ link, name }) => (
+        {navLinks.map(({ id, key }) => (
           <a
-            key={name}
-            href={link}
-            onClick={(e) => handleNavLinkClick(e, link)}
+            key={id}
+            href={`#${id}`}
+            onClick={(e) => handleNavLinkClick(e, `#${id}`)}
             className="block text-2xl font-medium text-center py-3"
             style={{ color: 'var(--xaga-white)' }}
           >
-            {name}
+            {t(`navbar.links.${key}`)}
           </a>
         ))}
         <a
@@ -196,8 +224,9 @@ const NavBar = () => {
           className="mt-8 inline-block px-8 py-4 rounded-lg text-lg font-medium"
           style={{ backgroundColor: 'var(--xaga-gold-dark)', color: 'var(--xaga-white)' }}
         >
-          Contáctanos
+          {t('navbar.contact')}
         </a>
+        <LanguageSwitcher forMobile={true} />
       </div>
     </header>
   );

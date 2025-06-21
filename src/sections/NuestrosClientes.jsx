@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import { useTranslation } from 'react-i18next';
 import { logoIconsList } from "../constants";
 import TitleHeader from "../components/TitleHeader";
 
@@ -23,10 +24,11 @@ const LogoIcon = ({ icon }) => {
 };
 
 const NuestrosClientes = () => {
+  const { t } = useTranslation();
   const sectionRef = useRef(null);
 
   useGSAP(() => {
-    const marqueeContainer = sectionRef.current.querySelector('.marquee-container');
+    const marqueeContainer = sectionRef.current.querySelector('.marquee');
     if (marqueeContainer) {
       gsap.fromTo(marqueeContainer,
         { opacity: 0, y: 60 },
@@ -57,8 +59,8 @@ const NuestrosClientes = () => {
     >
       <div className="container mx-auto px-0 md:px-6 lg:px-8">
         <TitleHeader
-          title="Nuestros Clientes"
-          sub="Confían en Nuestra Experiencia y Resultados"
+          title={t('clients.title')}
+          sub={t('clients.subtitle')}
         />
         <div
           className="relative w-full overflow-hidden"
@@ -71,6 +73,7 @@ const NuestrosClientes = () => {
           
           <div className="marquee h-full">
             <div className="marquee-box flex items-center h-full animate-marquee">
+              {/* Se usa la lista original de constantes, sin cambios */}
               {logoIconsList.concat(logoIconsList).map((icon, index) => (
                 <LogoIcon key={`${icon.name}-${index}-A`} icon={icon} />
               ))}

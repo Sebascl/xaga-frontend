@@ -1,0 +1,194 @@
+{
+    "navbar": {
+        "links": {
+            "about": "About Us",
+            "chooseUs": "Why Choose Us",
+            "missionVision": "Mission & Vision",
+            "services": "Services",
+            "visas": "Visa Procedures"
+        },
+        "contact": "Contact Us",
+        "logoAlt": "XAGA Lawyers Logo",
+        "openMenuAria": "Open navigation menu",
+        "closeMenuAria": "Close navigation menu"
+    },
+    "hero": {
+        "mainTitle": "XAGA Lawyers",
+        "tagline": "Legal Defense, Real Results.",
+        "subtitle": "Committed to excellence and the protection of your rights. Your trust is our greatest commitment.",
+        "ctaButton": "Contact Us Today"
+    },
+    "aboutUs": {
+        "title": "About Us",
+        "imageAlt": "XAGA Lawyers team and values",
+        "paragraph1": "With over 20 years of experience, <1>XAGA Lawyers</1> is a leading firm, committed to excellence and dedicated to providing comprehensive legal advice.",
+        "paragraph2": "We have an established reputation, providing timely legal services to each of our clients."
+    },
+    "whyChooseUs": {
+        "title": "Why Choose Us",
+        "subtitle": "Our Promise of Value and Commitment",
+        "mainParagraph": "At XAGA Lawyers, our commitment is the complete satisfaction of our clients. We have a highly qualified team, strong values, a proven track record of success, personalized attention, competitive costs, efficiency in managing matters, and solid ethics.",
+        "strengths": [
+            {
+                "id": "equipo",
+                "title": "Qualified Team",
+                "detail": "Legal experts with a solid track record and deep knowledge in various areas of law."
+            },
+            {
+                "id": "resultados",
+                "title": "Proven Results",
+                "detail": "A history of success and favorably resolved cases that support our effectiveness."
+            },
+            {
+                "id": "atencion",
+                "title": "Personalized Attention",
+                "detail": "We provide legal solutions tailored to your specific needs, with a close and dedicated approach."
+            },
+            {
+                "id": "etica",
+                "title": "Solid Ethics",
+                "detail": "We act with an unwavering commitment to integrity, transparency, and justice."
+            }
+        ],
+        "conclusion": "Trust us, we are here to help you every step of the way."
+    },
+    "missionVision": {
+        "title": "Our Philosophy",
+        "subtitle": "Commitment and Strategic Direction",
+        "missionTitle": "Mission",
+        "missionText": "To provide strategic and comprehensive legal advice effectively and specialized in criminal, civil, and commercial law matters, committed in all cases to offering our clients the necessary support in the search for justice and resolution of legal conflicts.",
+        "visionTitle": "Vision",
+        "visionText": "To be leaders in the legal field, highlighting our commitment, successful results, and extensive experience. We seek to be recognized as our clients' best allies in achieving their legal objectives."
+    },
+    "services": {
+        "title": "Our Services",
+        "subtitle": "Specialized Practice Areas",
+        "teaser": {
+            "ariaLabel": "View details for {{category}}",
+            "buttonText": "View Details"
+        },
+        "modal": {
+            "closeAriaLabel": "Close modal",
+            "detailedTitle": "Detailed Services:",
+            "contactTitle": "Need Advice on {{category}}?",
+            "contactParagraph": "Contact us directly for a personalized consultation about your case or needs.",
+            "contactButton": "Personalized Consultation"
+        },
+        "data": [
+            {
+                "id": "penal",
+                "category": "CRIMINAL LAW",
+                "items": [
+                    "Virtual Complaints: We come to your company with the appropriate devices to file any type of criminal complaint.",
+                    "Legal Actions: We draft the corresponding complaint and file it directly with the state prosecutor's office.",
+                    "Defense: Our lawyers hold master's degrees in criminal law; we represent and defend you in any type of crime.",
+                    "Legal Counsel for Victims: Counseling begins when the complaint or legal action is filed and continues until the oral trial takes place.",
+                    "Amparos (Constitutional Appeals): Filed against all types of authorities' actions against you, such as arrest warrants, subpoenas, etc."
+                ]
+            },
+            {
+                "id": "mercantil-civil",
+                "category": "COMMERCIAL AND CIVIL LAW",
+                "introduction": "At XAGA Lawyers, we understand that civil relationships and commercial activities are fundamental to daily life and business development.",
+                "items": [
+                    "Ordinary civil trial.",
+                    "Special eviction trial for non-payment of rent."
+                ]
+            },
+            {
+                "id": "laboral",
+                "category": "LABOR LAW",
+                "introduction": "The dynamics of the work environment require precise and strategic legal management.",
+                "items": [
+                    "Legal advice and representation for companies in labor matters.",
+                    "Legal advice and representation for workers."
+                ]
+            },
+            {
+                "id": "administrativo",
+                "category": "ADMINISTRATIVE LAW",
+                "items": [
+                    "We focus on urban planning advice, covering everything from land use zoning analysis to obtaining various municipal licenses under Municipal, State, and Federal jurisdiction."
+                ]
+            }
+        ]
+    },
+    "visaServices": {
+        "title": "Consular Advisory and Visa Processing",
+        "subtitle": "Experts in Immigration Processes in Monterrey",
+        "introduction": "From Monterrey, XAGA Lawyers offers expert advice and professional management for a wide range of U.S. visas. We simplify complex processes, maximizing your chances of success.",
+        "teaser": {
+            "buttonText": "View Details",
+            "cardAriaLabel": "View details about {{name}}",
+            "imageAlt": "Representative image of {{name}}"
+        },
+        "modal": {
+            "imageAlt": "Image for {{name}}",
+            "closeAriaLabel": "Close modal",
+            "contactTitle": "Interested in this process?",
+            "contactParagraph": "Contact us directly for a personalized consultation about your case.",
+            "contactButton": "Personalized Consultation"
+        },
+        "data": [
+            {
+                "id": "h2a",
+                "name": "H-2A Work Visas",
+                "description": "For agricultural workers with temporary or seasonal job offers in the United States.",
+                "detailedInfo": [
+                    "The H-2A visa allows U.S. employers who anticipate a shortage of domestic workers to bring foreign nationals to the U.S. to fill temporary agricultural jobs.",
+                    "This program is vital for the agricultural sector."
+                ]
+            },
+            {
+                "id": "h2b",
+                "name": "H-2B Work Visas",
+                "description": "Intended for non-agricultural workers to fill temporary jobs in the U.S. across various sectors.",
+                "detailedInfo": [
+                    "The H-2B visa is for workers in non-agricultural occupations."
+                ]
+            },
+            {
+                "id": "b1b2",
+                "name": "B1/B2 Visa (Tourism and Business)",
+                "description": "Allows entry to the U.S. for tourism, visits, medical treatments, or temporary business activities.",
+                "detailedInfo": [
+                    "The B-1 visa is for temporary business visitors, while the B-2 visa is for tourism, visits to family, or medical treatments."
+                ]
+            },
+            {
+                "id": "tn",
+                "name": "TN Visa (USMCA Professionals)",
+                "description": "For qualified professionals from Mexico and Canada under the USMCA to work temporarily in the U.S.",
+                "detailedInfo": [
+                    "The TN visa, derived from the United States-Mexico-Canada Agreement (USMCA), allows qualified Mexican and Canadian citizens to work in the U.S. in pre-established professions."
+                ]
+            }
+        ]
+    },
+    "clients": {
+        "title": "Our Clients",
+        "subtitle": "Trust in Our Experience and Results"
+    },
+    "contact": {
+        "pageTitle": "CONTACT US",
+        "pageSubtitle": "We Are Ready to Advise You",
+        "phoneSectionTitle": "Phone and WhatsApp Contact",
+        "phoneInstruction": "For calls and direct inquiries:",
+        "whatsappInstruction": "For messages and quick support:",
+        "whatsappButtonText": "Chat on WhatsApp {{number}}",
+        "addressSectionTitle": "Visit Us",
+        "address": "Olimpia No. 1521 Col. Nueva Linda Vista, Guadalupe, N.L.",
+        "mapTitle": "XAGA Lawyers Location"
+    },
+    "footer": {
+        "firmName": "XAGA Lawyers",
+        "copyrightLine1": "© {{year}} XAGA Lawyers.",
+        "copyrightLine2": "All rights reserved.",
+        "contactTitle": "Direct Contact",
+        "address": "Olimpia No. 1521 Col. Nueva Linda Vista, Guadalupe, N.L.",
+        "allContactOptions": "View all contact options",
+        "linksTitle": "Links",
+        "privacyPolicy": "Privacy Policy",
+        "termsAndConditions": "Terms and Conditions"
+    }
+}

@@ -1,0 +1,194 @@
+{
+    "navbar": {
+        "links": {
+            "about": "Quiénes Somos",
+            "chooseUs": "Por Qué Elegirnos",
+            "missionVision": "Misión y Visión",
+            "services": "Servicios",
+            "visas": "Trámites de Visa"
+        },
+        "contact": "Contáctanos",
+        "logoAlt": "Logo de XAGA Abogados",
+        "openMenuAria": "Abrir menú de navegación",
+        "closeMenuAria": "Cerrar menú de navegación"
+    },
+    "hero": {
+        "mainTitle": "XAGA Abogados",
+        "tagline": "Defensa Legal, Resultados Reales.",
+        "subtitle": "Comprometidos con la excelencia y la protección de sus derechos. Su confianza es nuestro mayor compromiso.",
+        "ctaButton": "Contáctanos Hoy"
+    },
+    "aboutUs": {
+        "title": "Quiénes Somos",
+        "imageAlt": "Equipo y valores de XAGA Abogados",
+        "paragraph1": "Con más de 20 años de experiencia, <1>XAGA Abogados</1> es un despacho líder, comprometido con la excelencia y dedicados a brindar asesoría jurídica integral.",
+        "paragraph2": "Contamos con una establecida reputación, ya que prestamos nuestros servicios legales de manera oportuna a cada uno de nuestros clientes."
+    },
+    "whyChooseUs": {
+        "title": "Por Qué Elegirnos",
+        "subtitle": "Nuestra Promesa de Valor y Compromiso",
+        "mainParagraph": "En XAGA Abogados, nuestro compromiso es la entera satisfacción de nuestros clientes. Contamos con equipo altamente calificado, valores, historial de éxitos comprobados, atención personalizada, costos competitivos, eficiencia en la gestión de asuntos y una sólida ética.",
+        "strengths": [
+            {
+                "id": "equipo",
+                "title": "Equipo Calificado",
+                "detail": "Expertos legales con una trayectoria sólida y profundo conocimiento en diversas áreas del derecho."
+            },
+            {
+                "id": "resultados",
+                "title": "Resultados Comprobados",
+                "detail": "Un historial de éxito y casos resueltos favorablemente que respaldan nuestra eficacia."
+            },
+            {
+                "id": "atencion",
+                "title": "Atención Personalizada",
+                "detail": "Brindamos soluciones legales adaptadas a sus necesidades específicas, con un trato cercano y dedicado."
+            },
+            {
+                "id": "etica",
+                "title": "Ética Sólida",
+                "detail": "Actuamos con un compromiso inquebrantable con la integridad, la transparencia y la justicia."
+            }
+        ],
+        "conclusion": "Confía en nosotros, estamos aquí para ayudarte en cada paso del camino."
+    },
+    "missionVision": {
+        "title": "Nuestra Filosofía",
+        "subtitle": "Compromiso y Dirección Estratégica",
+        "missionTitle": "Misión",
+        "missionText": "Proporcionar asesoría legal estratégica e integral de manera eficaz y especializada en asuntos de derecho penal, civil y mercantil, comprometidos en todos los casos a ofrecerle a nuestros clientes el apoyo necesario para la búsqueda de justicia y resolución de conflictos legales.",
+        "visionTitle": "Visión",
+        "visionText": "Ser lideres en el campo legal, destacando nuestro compromiso, resultados exitosos y amplia experiencia. Buscamos ser reconocidos como los mejores aliados de nuestros clientes para alcanzar sus objetivos en el ámbito legal."
+    },
+    "services": {
+        "title": "Nuestros Servicios",
+        "subtitle": "Áreas de Práctica Especializadas",
+        "teaser": {
+            "ariaLabel": "Ver detalles de {{category}}",
+            "buttonText": "Ver Detalles"
+        },
+        "modal": {
+            "closeAriaLabel": "Cerrar modal",
+            "detailedTitle": "Servicios Detallados:",
+            "contactTitle": "¿Necesitas Asesoría en {{category}}?",
+            "contactParagraph": "Contáctanos directamente para una consulta personalizada sobre tu caso o necesidades.",
+            "contactButton": "Consulta Personalizada"
+        },
+        "data": [
+            {
+                "id": "penal",
+                "category": "DERECHO PENAL",
+                "items": [
+                    "Denuncias Virtuales: Acudimos a tu empresa con los dispositivos adecuados para realizar cualquier tipo de denuncia de tipo penal.",
+                    "Querellas: Redactamos la denuncia correspondiente y la presentamos directamente en la Fiscalía del estado.",
+                    "Defensa: Nuestros abogados ostentan maestría en derecho penal, te representamos y defendemos en cualquier tipo de delito.",
+                    "Asesoría Jurídica a Víctimas: La asesoría inicia desde que se presenta la denuncia o querella y hasta que el juicio oral penal se lleve a cabo.",
+                    "Amparos: Se interponen contra todo tipo de actos de autoridad en tu contra, ordenes de aprensión, comparecencia o presentación, etc."
+                ]
+            },
+            {
+                "id": "mercantil-civil",
+                "category": "DERECHO MERCANTIL Y CIVIL",
+                "introduction": "En XAGA Abogados, entendemos que las relaciones civiles y las actividades comerciales son fundamentales en la vida diaria y el desarrollo empresarial.",
+                "items": [
+                    "Juicio ordinario civil.",
+                    "Juicio especial de desahucio por falta de pago de rentas."
+                ]
+            },
+            {
+                "id": "laboral",
+                "category": "DERECHO LABORAL",
+                "introduction": "Las dinámicas del entorno laboral requieren un manejo legal preciso y estratégico.",
+                "items": [
+                    "Asesoría y representación legal de empresas en materia laboral.",
+                    "Asesoría y representación legal de trabajadores."
+                ]
+            },
+            {
+                "id": "administrativo",
+                "category": "DERECHO ADMINISTRATIVO",
+                "items": [
+                    "Nos enfocamos en asesoría urbanística que abarca desde el análisis de la zonificación de uso de suelo hasta lograr las diversas licencias municipales, en jurisdicción Municipal, Estatal y Federal."
+                ]
+            }
+        ]
+    },
+    "visaServices": {
+        "title": "Asesoría Consular y Trámites de Visa",
+        "subtitle": "Expertos en Procesos Migratorios en Monterrey",
+        "introduction": "Desde Monterrey, XAGA Abogados le ofrece asesoría experta y gestión profesional para una amplia gama de visas estadounidenses. Simplificamos procesos complejos, maximizando sus posibilidades de éxito.",
+        "teaser": {
+            "buttonText": "Ver Detalles",
+            "cardAriaLabel": "Ver detalles sobre {{name}}",
+            "imageAlt": "Imagen representativa de {{name}}"
+        },
+        "modal": {
+            "imageAlt": "Imagen para {{name}}",
+            "closeAriaLabel": "Cerrar modal",
+            "contactTitle": "¿Interesado en este trámite?",
+            "contactParagraph": "Contáctanos directamente para una asesoría personalizada sobre su caso.",
+            "contactButton": "Consulta Personalizada"
+        },
+        "data": [
+            {
+                "id": "h2a",
+                "name": "Visas de Trabajo H-2A",
+                "description": "Para trabajadores agrícolas con ofertas de empleo temporal o estacional en los Estados Unidos.",
+                "detailedInfo": [
+                    "La visa H-2A permite a empleadores estadounidenses que anticipan una escasez de trabajadores domésticos traer ciudadanos extranjeros a los EE.UU. para llenar puestos de trabajo agrícolas temporales.",
+                    "Este programa es vital para el sector agrícola."
+                ]
+            },
+            {
+                "id": "h2b",
+                "name": "Visas de Trabajo H-2B",
+                "description": "Destinadas a trabajadores no agrícolas para cubrir empleos temporales en EE.UU. en diversos sectores.",
+                "detailedInfo": [
+                    "La visa H-2B es para trabajadores en ocupaciones no agrícolas."
+                ]
+            },
+            {
+                "id": "b1b2",
+                "name": "Visa B1/B2 (Turismo y Negocios)",
+                "description": "Permite la entrada a EE.UU. por turismo, visitas, tratamientos médicos o actividades de negocios temporales.",
+                "detailedInfo": [
+                    "La visa B-1 es para visitantes de negocios temporales, mientras que la visa B-2 es para turismo, visitas a familiares o tratamientos médicos."
+                ]
+            },
+            {
+                "id": "tn",
+                "name": "Visa TN (Profesionistas T-MEC)",
+                "description": "Para profesionales cualificados de México y Canadá bajo el T-MEC para trabajar temporalmente en EE.UU.",
+                "detailedInfo": [
+                    "La visa TN, derivada del Tratado entre México, Estados Unidos y Canadá (T-MEC), permite a ciudadanos mexicanos y canadienses calificados trabajar en los EE.UU. en profesiones preestablecidas."
+                ]
+            }
+        ]
+    },
+    "clients": {
+        "title": "Nuestros Clientes",
+        "subtitle": "Confían en Nuestra Experiencia y Resultados"
+    },
+    "contact": {
+        "pageTitle": "CONTÁCTANOS",
+        "pageSubtitle": "Estamos Listos para Asesorarte",
+        "phoneSectionTitle": "Contacto Telefónico y WhatsApp",
+        "phoneInstruction": "Para llamadas y consultas directas:",
+        "whatsappInstruction": "Para mensajes y atención rápida:",
+        "whatsappButtonText": "Chatea por WhatsApp {{number}}",
+        "addressSectionTitle": "Visítanos",
+        "address": "Olimpia No. 1521 Col. Nueva Linda Vista, Guadalupe, N.L.",
+        "mapTitle": "Ubicación de XAGA Abogados"
+    },
+    "footer": {
+        "firmName": "XAGA Abogados",
+        "copyrightLine1": "© {{year}} XAGA Abogados.",
+        "copyrightLine2": "Todos los derechos reservados.",
+        "contactTitle": "Contacto Directo",
+        "address": "Olimpia No. 1521 Col. Nueva Linda Vista, Guadalupe, N.L.",
+        "allContactOptions": "Ver todas las opciones de contacto",
+        "linksTitle": "Enlaces",
+        "privacyPolicy": "Aviso de Privacidad",
+        "termsAndConditions": "Términos y Condiciones"
+    }
+}
