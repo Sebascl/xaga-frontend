@@ -21,10 +21,13 @@ const ChooseUs = () => {
     etica: "⚖️"
   };
 
-  const strengthsData = t('whyChooseUs.strengths', { returnObjects: true }).map(strength => ({
-    ...strength,
-    iconText: strengthIcons[strength.id] || "❓"
-  }));
+  const translatedStrengths = t('whyChooseUs.strengths', { returnObjects: true });
+  const strengthsData = Array.isArray(translatedStrengths)
+    ? translatedStrengths.map(strength => ({
+        ...strength,
+        iconText: strengthIcons[strength.id] || "❓"
+      }))
+    : [];
 
   useGSAP(() => {
     const section = sectionRef.current;
@@ -43,7 +46,7 @@ const ChooseUs = () => {
     if (conclusionText) {
       tl.fromTo(conclusionText, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, "-=0.3");
     }
-  }, { scope: sectionRef, dependencies: [] });
+  }, { scope: sectionRef, dependencies: [strengthsData] });
 
   const cardBaseStyle = {
     backgroundColor: "var(--xaga-white)",
@@ -88,7 +91,6 @@ const ChooseUs = () => {
           ref={strengthsGridRef}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 md:gap-10 mt-12 md:mt-16 max-w-4xl mx-auto"
         >
-          {/* Se usa el nuevo strengthsData dinámico */}
           {strengthsData.map((strength) => (
             <div
               key={strength.id}

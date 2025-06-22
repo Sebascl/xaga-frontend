@@ -4,7 +4,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { useTranslation } from 'react-i18next';
 import TitleHeader from '../components/TitleHeader';
-// import VisaTeaserCard from './VisaTeaserCard';
 import VisaDetailModal from './VisaDetailModal';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -22,8 +21,9 @@ const TramitesVisa = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const sectionRef = useRef(null);
 
-  // Combinar datos locales con datos traducidos
-  const translatedVisas = t('visaServices.data', { returnObjects: true }) || [];
+  const rawTranslatedVisas = t('visaServices.data', { returnObjects: true }) || [];
+  const translatedVisas = Array.isArray(rawTranslatedVisas) ? rawTranslatedVisas : [];
+
   const visaServicesData = localVisaInfo.map(localVisa => {
     const translatedData = translatedVisas.find(tv => tv.id === localVisa.id) || {};
     return { ...localVisa, ...translatedData };
@@ -34,12 +34,12 @@ const TramitesVisa = () => {
     if (!sectionCurrent) return;
     const introP = sectionCurrent.querySelector(".visa-intro-text");
     const visaCards = gsap.utils.toArray(sectionCurrent.querySelectorAll(".visa-card-item"));
-    gsap.set([introP, ...visaCards], {autoAlpha: 0}); 
+    gsap.set([introP, ...visaCards], { autoAlpha: 0 });
     const tl = gsap.timeline({
-      scrollTrigger: { trigger: sectionCurrent, start: "top 80%", toggleActions: "play none none none", once: true },
+      scrollTrigger: { trigger: sectionCurrent, start: "top 80%", toggleActions: "play none none none", once: true }
     });
-    if (introP) tl.to(introP, { autoAlpha: 1, y: 0, x:0, duration: 0.7, ease: "power2.out" }, "+=0.2");
-    if (visaCards.length > 0) tl.to(visaCards, { autoAlpha: 1, y: 0, x:0, scale: 1, duration: 0.6, stagger: 0.15, ease: "power3.out" }, introP ? "-=0.3" : "+=0.2");
+    if (introP) tl.to(introP, { autoAlpha: 1, y: 0, x: 0, duration: 0.7, ease: "power2.out" }, "+=0.2");
+    if (visaCards.length > 0) tl.to(visaCards, { autoAlpha: 1, y: 0, x: 0, scale: 1, duration: 0.6, stagger: 0.15, ease: "power3.out" }, introP ? "-=0.3" : "+=0.2");
   }, { scope: sectionRef, dependencies: [] });
 
   const openModal = (visa) => {
@@ -57,16 +57,20 @@ const TramitesVisa = () => {
     if (isModalOpen) window.addEventListener("keydown", handleEscKey);
     return () => window.removeEventListener("keydown", handleEscKey);
   }, [isModalOpen]);
-  
+
   const cardBaseStyle = {
-    backgroundColor: 'var(--xaga-white)', borderRadius: '0.75rem',
+    backgroundColor: 'var(--xaga-white)',
+    borderRadius: '0.75rem',
     boxShadow: '0 8px 16px -4px rgba(0,0,0,0.08), 0 4px 8px -6px rgba(0,0,0,0.05)',
     transition: 'transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-    overflow: 'hidden', display: 'flex', flexDirection: 'column', cursor: 'pointer',
+    overflow: 'hidden',
+    display: 'flex',
+    flexDirection: 'column',
+    cursor: 'pointer'
   };
   const cardHoverStyle = {
     transform: 'translateY(-8px)',
-    boxShadow: '0 15px 30px -10px rgba(166,145,103,0.18), 0 8px 16px -8px rgba(166,145,103,0.12)',
+    boxShadow: '0 15px 30px -10px rgba(166,145,103,0.18), 0 8px 16px -8px rgba(166,145,103,0.12)'
   };
 
   return (

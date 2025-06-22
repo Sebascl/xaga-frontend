@@ -22,7 +22,9 @@ const NuestrosServicios = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const sectionRef = useRef(null);
 
-  const translatedServices = t('services.data', { returnObjects: true }) || [];
+  const rawTranslatedServices = t('services.data', { returnObjects: true }) || [];
+  const translatedServices = Array.isArray(rawTranslatedServices) ? rawTranslatedServices : [];
+
   const servicesData = localServicesInfo.map(localService => {
     const translatedData = translatedServices.find(ts => ts.id === localService.id) || {};
     return { ...localService, ...translatedData };
@@ -43,8 +45,8 @@ const NuestrosServicios = () => {
           trigger: card,
           start: 'top 90%',
           toggleActions: 'play none none none',
-          once: true,
-        },
+          once: true
+        }
       });
     });
   }, { scope: sectionRef, dependencies: [] });
@@ -58,7 +60,7 @@ const NuestrosServicios = () => {
     setIsModalOpen(false);
     gsap.delayedCall(0.4, () => setSelectedService(null));
   };
-  
+
   useEffect(() => {
     const handleEscKey = (event) => {
       if (event.key === 'Escape' && isModalOpen) {
