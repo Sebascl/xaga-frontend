@@ -7,16 +7,26 @@ import TitleHeader from '../components/TitleHeader';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const callNumber = { display: "(81) 2719-5935", number: "528127195935" };
-const whatsappNumber = { display: "(81) 1030-2865", number: "528110302865" };
 const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3595.667232338531!2d-100.2312960888809!3d25.68160407730602!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x866295555462c07b%3A0x64c8d5696f8f7493!2sOLIMPIA%201521-S%20XAGA%20ABOGADOS!5e0!3m2!1ses-419!2smx!4v1718843939634!5m2!1ses-419!2smx";
 
 
 const Contact = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation(); 
   const sectionRef = useRef(null);
   const contactPanelRef = useRef(null);
   const mapPanelRef = useRef(null);
+
+  const isEnglish = i18n.language.startsWith('en');
+
+  const callNumber = {
+    display: isEnglish ? "+52 (81) 2719-5935" : "(81) 2719-5935",
+    number: "528127195935"
+  };
+
+  const whatsappNumber = {
+    display: isEnglish ? "+52 (81) 1030-2865" : "(81) 1030-2865",
+    number: "528110302865"
+  };
 
   useGSAP(() => {
     const tl = gsap.timeline({ scrollTrigger: { trigger: sectionRef.current, start: "top 75%", toggleActions: "play none none none" }});
@@ -58,6 +68,7 @@ const Contact = () => {
                 <p className="text-sm mb-1" style={{color: 'var(--xaga-black)'}}>{t('contact.phoneInstruction')}</p>
                 <a href={`tel:${callNumber.number}`} className="flex items-center text-lg md:text-xl group" style={{ color: 'var(--xaga-black)'}} onMouseEnter={e => e.currentTarget.style.color = 'var(--xaga-gold-medium)'} onMouseLeave={e => e.currentTarget.style.color = 'var(--xaga-black)'}>
                   <PhoneIcon className="mr-3 transition-colors duration-300 group-hover:fill-[var(--xaga-gold-medium)]" /> 
+                  {/* Este span mostrará el número en el formato correcto */}
                   <span className="transition-colors duration-300 group-hover:text-[var(--xaga-gold-medium)]">{callNumber.display}</span>
                 </a>
               </div>
@@ -65,6 +76,7 @@ const Contact = () => {
               <div>
                 <p className="text-sm mb-1" style={{color: 'var(--xaga-black)'}}>{t('contact.whatsappInstruction')}</p>
                 <a href={`https://wa.me/${whatsappNumber.number}?text=Hola,%20me%20gustaría%20solicitar%20información%20sobre%20sus%20servicios.`} target="_blank" rel="noopener noreferrer" className="mt-1 inline-flex items-center py-3 px-6 rounded-lg text-base font-semibold shadow-md hover:shadow-lg" style={baseButtonStyle} onMouseEnter={e => Object.assign(e.currentTarget.style, hoverButtonStyle)} onMouseLeave={e => Object.assign(e.currentTarget.style, baseButtonStyle)}>
+                  {/* El número dentro del botón también se actualizará */}
                   {t('contact.whatsappButtonText', { number: whatsappNumber.display })}
                 </a>
               </div>
