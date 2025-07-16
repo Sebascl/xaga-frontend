@@ -190,5 +190,81 @@
         "linksTitle": "Enlaces",
         "privacyPolicy": "Aviso de Privacidad",
         "termsAndConditions": "Términos y Condiciones"
+    },
+    "privacyPolicy": {
+        "title": "Aviso de Privacidad de XAGA",
+        "lastUpdated": "Fecha de última actualización: 16 de julio de 2024",
+        "sections": [
+            {
+                "title": "1. Identificación y Datos de Contacto del Responsable",
+                "content": "XAGA, S.C. (en adelante, \"XAGA\"), con domicilio en Olimpia No. 1521 Col. Nueva Linda Vista, Guadalupe, N.L., es la responsable del tratamiento de sus datos personales. Este Aviso de Privacidad tiene como objetivo informarle sobre los derechos que le asisten en virtud de la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP). Si tiene cualquier duda, puede contactarnos en: privacidad@xaga.com."
+            },
+            {
+                "title": "2. ¿Qué Datos Personales Recabamos?",
+                "content": "Usted puede navegar por nuestro sitio web sin proporcionar datos personales. Sin embargo, voluntariamente puede proporcionarnos datos de identificación, contacto, laborales, de facturación y, en caso de aplicar, para reclutamiento. Es importante mencionar que en XAGA no recabamos datos personales sensibles."
+            },
+            {
+                "title": "3. Finalidades del Tratamiento de sus Datos Personales",
+                "content": "Sus datos son utilizados para finalidades necesarias como verificar su identidad, administrar los servicios legales, y contestar sus consultas. Adicionalmente, podemos usarlos para finalidades secundarias como enviarle nuestro boletín informativo o con fines de mercadotecnia, de los cuales puede optar por salir en cualquier momento."
+            },
+            {
+                "title": "4. Transferencia de Datos Personales",
+                "content": "XAGA no cederá sus datos personales a terceros, salvo que exista una obligación legal o sea estrictamente necesario para cumplir con las finalidades descritas."
+            },
+            {
+                "title": "5. Ejercicio de sus Derechos ARCO",
+                "content": "Usted tiene derecho a Acceder, Rectificar, Cancelar u Oponerse (ARCO) al tratamiento de sus datos. Para ejercer estos derechos, o para revocar su consentimiento, por favor presente su solicitud al correo: privacidad@xaga.com."
+            },
+            {
+                "title": "6. Uso de Cookies y Tecnologías de Seguimiento",
+                "content": "Nuestro sitio web utiliza 'cookies' para generar estadísticas y mejorar su experiencia. Puede deshabilitar estas tecnologías en la configuración de su navegador."
+            },
+            {
+                "title": "7. Medidas de Seguridad",
+                "content": "XAGA ha adoptado y mantiene las medidas de seguridad administrativas, técnicas y físicas necesarias para proteger sus datos personales."
+            },
+            {
+                "title": "8. Menores de Edad",
+                "content": "No recabamos intencionalmente datos de menores de edad sin el consentimiento expreso de sus padres o tutores."
+            },
+            {
+                "title": "9. Cambios al Aviso de Privacidad",
+                "content": "Cualquier modificación a este aviso de privacidad será comunicada a través de nuestro sitio web."
+            }
+        ]
+    },
+    "termsAndConditions": {
+        "title": "Términos y Condiciones",
+        "lastUpdated": "Julio de 2025",
+        "sections": [
+            {
+                "title": "1. Información Legal y Aceptación",
+                "content": "Las presentes disposiciones regulan el uso del servicio del portal de Internet que XAGA, S.C. ('XAGA') pone a disposición de los usuarios. El acceso y uso del portal implican la aceptación de estas condiciones. Los servicios jurídicos profesionales se rigen por propuestas independientes y no se prestan a través de este portal."
+            },
+            {
+                "title": "2. Propiedad Intelectual e Industrial",
+                "content": "Todos los contenidos del Portal, incluyendo textos, gráficos, logos y software, son propiedad intelectual de XAGA o de terceros. No se cede ningún derecho de explotación sobre ellos. Las marcas y nombres comerciales son titularidad de XAGA o terceros."
+            },
+            {
+                "title": "3. Condiciones de Uso del Portal",
+                "content": "El Usuario se obliga a hacer un uso correcto del Portal de conformidad con la Ley. Queda prohibido usarlo con fines lesivos. El Usuario garantiza la veracidad de la información proporcionada en los formularios. Se prohíbe enlazar al portal de formas que puedan inducir a error, realizar actos de imitación desleal o usar la marca XAGA sin autorización."
+            },
+            {
+                "title": "4. Exclusión de Responsabilidad",
+                "content": "La información del portal es de carácter general y no constituye asesoramiento legal. XAGA no se responsabiliza de decisiones tomadas con base en dicha información, ni de daños en equipos informáticos por virus, ni de fallos en las redes de telecomunicaciones."
+            },
+            {
+                "title": "5. Protección de Datos Personales",
+                "content": "Para más información sobre el tratamiento de sus datos personales en el Portal, diríjase a nuestro Aviso de Privacidad."
+            },
+            {
+                "title": "6. Comunicación de Actividades de Carácter Ilícito",
+                "content": "Si el Usuario detecta que un sitio enlazado contiene material ilícito, puede comunicarlo a XAGA. Dicha comunicación no implicará el conocimiento efectivo por parte de la firma."
+            },
+            {
+                "title": "7. Legislación y Jurisdicción",
+                "content": "Este documento se rige por las leyes aplicables en los Estados Unidos Mexicanos. Para cualquier controversia, las partes se someten a la jurisdicción de los tribunales competentes de la ciudad de Monterrey, Nuevo León, México."
+            }
+        ]
     }
 }

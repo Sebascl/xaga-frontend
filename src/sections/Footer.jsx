@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import { socialImgs } from "../constants";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -23,30 +24,33 @@ const Footer = () => {
 
   const currentYear = new Date().getFullYear();
   const primaryPhone = { display: "(81) 1030-2865", number: "528110302865" };
-  
+
   return (
     <footer
       ref={footerRef}
       className="w-full overflow-hidden"
       style={{
-        backgroundColor: 'var(--xaga-black)', color: 'var(--xaga-beige)',
-        paddingTop: '4rem', paddingBottom: '3rem', marginTop: '5rem', visibility: 'hidden'
+        backgroundColor: 'var(--xaga-black)',
+        color: 'var(--xaga-beige)',
+        paddingTop: '4rem',
+        paddingBottom: '3rem',
+        visibility: 'hidden'
       }}
     >
       <div className="container mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-10 text-sm">
         <div className="flex flex-col space-y-3 items-center md:items-start text-center md:text-left">
-          <a href="#hero" className="mb-2 inline-block self-center md:self-start">
+          <Link to="/" className="mb-2 inline-block self-center md:self-start">
             <img
               src="/images/logo_xaga.png"
               alt={t('navbar.logoAlt')}
               className="h-12 w-auto max-w-[180px]"
               style={{ filter: 'brightness(0) invert(1)' }}
             />
-          </a>
+          </Link>
           <h3 className="text-xl font-semibold w-full" style={{ color: 'var(--xaga-white)' }}>
             {t('footer.firmName')}
           </h3>
-          <p className="text-xs leading-relaxed max-w-none w-full" style={{color: 'var(--xaga-beige)'}}>
+          <p className="text-xs leading-relaxed max-w-none w-full" style={{ color: 'var(--xaga-beige)' }}>
             {t('footer.copyrightLine1', { year: currentYear })} <br />
             {t('footer.copyrightLine2')}
           </p>
@@ -58,15 +62,20 @@ const Footer = () => {
           <a href={`tel:${primaryPhone.number}`} className="hover:underline inline-block" style={{ color: 'var(--xaga-gold-medium)' }}>
             {primaryPhone.display}
           </a>
-          <a href="#contacto" className="text-xs hover:underline inline-block" style={{ color: 'var(--xaga-gold-light)' }}>
+          <Link to="/#contacto" className="text-xs hover:underline inline-block" style={{ color: 'var(--xaga-gold-light)' }}>
             {t('footer.allContactOptions')}
-          </a>
+          </Link>
         </div>
 
         <div className="flex flex-col space-y-3 items-center md:items-start text-center md:text-left">
           <h4 className="font-semibold text-lg mb-1 w-full" style={{ color: 'var(--xaga-white)' }}>{t('footer.linksTitle')}</h4>
-          <a href="/aviso-de-privacidad" className="hover:underline max-w-none w-full inline-block" style={{color: 'var(--xaga-beige)'}}>{t('footer.privacyPolicy')}</a>
-          <a href="/terminos-y-condiciones" className="hover:underline max-w-none w-full inline-block" style={{color: 'var(--xaga-beige)'}}>{t('footer.termsAndConditions')}</a>
+          
+          <Link to="/aviso-de-privacidad" className="hover:underline max-w-none w-full inline-block" style={{ color: 'var(--xaga-beige)' }}>
+            {t('footer.privacyPolicy')}
+          </Link>
+          <Link to="/terminos-y-condiciones" className="hover:underline max-w-none w-full inline-block" style={{ color: 'var(--xaga-beige)' }}>
+            {t('footer.termsAndConditions')}
+          </Link>
           
           {socialImgs && socialImgs.length > 0 && (
             <div className="flex flex-wrap space-x-3 pt-2 justify-center md:justify-start w-full">
@@ -78,13 +87,13 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   aria-label={social.name}
                   className="p-2 rounded-full transition-all duration-300 hover:opacity-75 hover:scale-110 block"
-                  style={{ backgroundColor: 'var(--xaga-gold-dark)'}}
+                  style={{ backgroundColor: 'var(--xaga-gold-dark)' }}
                 >
                   <img
                     src={social.imgPath}
                     alt={social.name}
                     className="h-5 w-5"
-                    style={{ filter: 'brightness(0) invert(1)'}}
+                    style={{ filter: 'brightness(0) invert(1)' }}
                   />
                 </a>
               ))}

@@ -190,5 +190,81 @@
         "linksTitle": "Links",
         "privacyPolicy": "Privacy Policy",
         "termsAndConditions": "Terms and Conditions"
+    },
+    "privacyPolicy": {
+        "title": "XAGA Privacy Notice",
+        "lastUpdated": "Last updated: July 16, 2024",
+        "sections": [
+            {
+                "title": "1. Identity and Contact Details of the Controller",
+                "content": "XAGA, S.C. (hereinafter, \"XAGA\"), located at Olimpia No. 1521 Col. Nueva Linda Vista, Guadalupe, N.L., is the controller of your personal data. This Privacy Notice aims to inform you about your rights under the Federal Law on Protection of Personal Data Held by Private Parties (LFPDPPP). If you have any questions, you can contact us at: privacy@xaga.com."
+            },
+            {
+                "title": "2. What Personal Data Do We Collect?",
+                "content": "You can browse our website without providing personal data. However, you may voluntarily provide us with identification, contact, employment, billing, and, if applicable, recruitment data. It is important to mention that XAGA does not collect sensitive personal data."
+            },
+            {
+                "title": "3. Purposes of Processing Your Personal Data",
+                "content": "Your data is used for necessary purposes such as verifying your identity, administering legal services, and answering your inquiries. Additionally, we may use it for secondary purposes such as sending you our newsletter or for marketing purposes, from which you can opt-out at any time."
+            },
+            {
+                "title": "4. Transfer of Personal Data",
+                "content": "XAGA will not transfer your personal data to third parties, unless there is a legal obligation or it is strictly necessary to fulfill the described purposes."
+            },
+            {
+                "title": "5. Exercise of Your ARCO Rights",
+                "content": "You have the right to Access, Rectify, Cancel, or Oppose (ARCO) the processing of your data. To exercise these rights, or to revoke your consent, please submit your request to: privacy@xaga.com."
+            },
+            {
+                "title": "6. Use of Cookies and Tracking Technologies",
+                "content": "Our website uses 'cookies' to generate statistics and improve your experience. You can disable these technologies in your browser settings."
+            },
+            {
+                "title": "7. Security Measures",
+                "content": "XAGA has adopted and maintains the necessary administrative, technical, and physical security measures to protect your personal data."
+            },
+            {
+                "title": "8. Minors",
+                "content": "We do not intentionally collect data from minors without the express consent of their parents or guardians."
+            },
+            {
+                "title": "9. Changes to the Privacy Notice",
+                "content": "Any changes to this privacy notice will be communicated through our website."
+            }
+        ]
+    },
+    "termsAndConditions": {
+        "title": "Terms and Conditions",
+        "lastUpdated": "July 2025",
+        "sections": [
+            {
+                "title": "1. Legal Information and Acceptance",
+                "content": "These provisions regulate the use of the internet portal service provided by XAGA, S.C. ('XAGA'). Accessing and using the portal implies acceptance of these conditions. Professional legal services are governed by separate proposals and are not provided through this portal."
+            },
+            {
+                "title": "2. Intellectual and Industrial Property",
+                "content": "All content on the Portal, including text, graphics, logos, and software, is the intellectual property of XAGA or third parties. No exploitation rights are transferred. Trademarks and trade names are owned by XAGA or third parties."
+            },
+            {
+                "title": "3. Conditions of Use of the Portal",
+                "content": "The User agrees to use the Portal correctly in accordance with the Law. Using it for harmful purposes is prohibited. The User guarantees the truthfulness of the information provided in forms. Linking to the portal in ways that may mislead, constitute unfair imitation, or use the XAGA brand without authorization is prohibited."
+            },
+            {
+                "title": "4. Exclusion of Liability",
+                "content": "The information on the portal is general in nature and does not constitute legal advice. XAGA is not responsible for decisions made based on such information, for damage to computer equipment from viruses, or for telecommunications network failures."
+            },
+            {
+                "title": "5. Personal Data Protection",
+                "content": "For more information on the processing of your personal data on the Portal, please refer to our Privacy Notice."
+            },
+            {
+                "title": "6. Communication of Unlawful Activities",
+                "content": "If the User finds that a linked site contains unlawful material, they may report it to XAGA. Such communication will not imply actual knowledge by the firm."
+            },
+            {
+                "title": "7. Governing Law and Jurisdiction",
+                "content": "This document is governed by the applicable laws of the United States of Mexico. For any controversy, the parties submit to the jurisdiction of the competent courts of the city of Monterrey, Nuevo León, Mexico."
+            }
+        ]
     }
 }

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { useTranslation } from "react-i18next";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const MenuIcon = (props) => (
   <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -20,12 +21,28 @@ const NavBar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mobileMenuRef = useRef(null);
   const headerRef = useRef(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const navLinks = [
     { id: 'quienes-somos', key: 'about' },
     { id: 'servicios', key: 'services' },
     { id: 'tramites-visa', key: 'visas' },
   ];
+
+  useEffect(() => {
+    if (location.pathname === '/' && location.hash) {
+      const id = location.hash.substring(1);
+      const targetElement = document.getElementById(id);
+      if (targetElement) {
+        const navbarHeight = headerRef.current ? headerRef.current.offsetHeight : 0;
+        const extraOffset = 20;
+        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - navbarHeight - extraOffset;
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      }
+    }
+  }, [location]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -70,35 +87,16 @@ const NavBar = () => {
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
-  
+
   const closeMobileMenuOnly = () => {
     setIsMobileMenuOpen(false);
-  };
-
-  const handleNavLinkClick = (e, targetId) => {
-    e.preventDefault();
-    if (isMobileMenuOpen) {
-      closeMobileMenuOnly();
-    }
-
-    const id = targetId.startsWith("#") ? targetId.substring(1) : targetId;
-    const targetElement = document.getElementById(id);
-
-    if (targetElement) {
-      const navbarHeight = headerRef.current ? headerRef.current.offsetHeight : 0;
-      const extraOffset = 20;
-      const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = elementPosition - navbarHeight - extraOffset;
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-    } else if (targetId === "#hero") {
-      window.scrollTo({ top: 0, behavior: 'smooth'});
-    }
   };
 
   const LanguageSwitcher = ({ forMobile }) => {
     const activeLangClass = "font-bold text-[var(--xaga-gold-dark)]";
     const inactiveLangClass = "opacity-70 hover:opacity-100";
     const baseClasses = "cursor-pointer transition-opacity duration-200";
+    const desktopLinkColor = scrolled ? 'var(--xaga-black)' : 'var(--xaga-white)';
 
     if (forMobile) {
       return (
@@ -122,7 +120,7 @@ const NavBar = () => {
   const navBarDynamicClasses = scrolled
     ? "bg-[var(--xaga-white)] shadow-lg"
     : "bg-transparent md:top-5";
-  
+
   const iconColor = (isMobileMenuOpen || !scrolled) ? 'var(--xaga-white)' : 'var(--xaga-black)';
   const desktopLinkColor = scrolled ? 'var(--xaga-black)' : 'var(--xaga-white)';
 
@@ -135,21 +133,20 @@ const NavBar = () => {
       <div
         className="container mx-auto flex items-center justify-between h-20 md:h-24 transition-all duration-300"
       >
-        <a href="#hero" className="logo z-[101]" onClick={(e) => handleNavLinkClick(e, "#hero")}>
+        <Link to="/" className="logo z-[101]" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <img
             src="/images/logo_xaga.png"
             alt={t('navbar.logoAlt')}
             className="h-10 md:h-12 w-auto"
             style={{ filter: (isMobileMenuOpen && !scrolled) ? 'brightness(0) invert(1)' : 'none' }}
           />
-        </a>
+        </Link>
 
         <nav className="hidden lg:flex items-center space-x-8">
           {navLinks.map(({ id, key }) => (
             <li key={id} className="group list-none">
-              <a
-                href={`#${id}`}
-                onClick={(e) => handleNavLinkClick(e, `#${id}`)}
+              <Link
+                to={`/#${id}`}
                 className="text-base font-medium relative pb-1"
                 style={{ color: desktopLinkColor }}
                 onMouseEnter={e => e.currentTarget.style.color = 'var(--xaga-gold-dark)'}
@@ -160,23 +157,22 @@ const NavBar = () => {
                   className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full"
                   style={{ backgroundColor: 'var(--xaga-gold-dark)' }}
                 />
-              </a>
+              </Link>
             </li>
           ))}
         </nav>
 
         <div className="hidden lg:flex items-center space-x-6">
           <LanguageSwitcher />
-          <a
-            href="#contacto"
-            onClick={(e) => handleNavLinkClick(e, "#contacto")}
+          <Link
+            to="/#contacto"
             className="px-6 py-3 rounded-lg text-base font-medium transition-colors duration-300"
-            style={{ backgroundColor: 'var(--xaga-gold-dark)', color: 'var(--xaga-white)'}}
+            style={{ backgroundColor: 'var(--xaga-gold-dark)', color: 'var(--xaga-white)' }}
             onMouseEnter={e => e.currentTarget.style.backgroundColor = 'var(--xaga-gold-medium)'}
             onMouseLeave={e => e.currentTarget.style.backgroundColor = 'var(--xaga-gold-dark)'}
           >
             {t('navbar.contact')}
-          </a>
+          </Link>
         </div>
 
         <div className="lg:hidden z-[101]">
@@ -205,27 +201,27 @@ const NavBar = () => {
           paddingTop: 'calc(6rem + env(safe-area-inset-top))',
           paddingBottom: 'env(safe-area-inset-bottom)',
         }}
-        onClick={(e) => { if (e.target === mobileMenuRef.current) closeMobileMenuOnly();}}
+        onClick={(e) => { if (e.target === mobileMenuRef.current) closeMobileMenuOnly(); }}
       >
         {navLinks.map(({ id, key }) => (
-          <a
+          <Link
             key={id}
-            href={`#${id}`}
-            onClick={(e) => handleNavLinkClick(e, `#${id}`)}
+            to={`/#${id}`}
+            onClick={closeMobileMenuOnly}
             className="block text-2xl font-medium text-center py-3"
             style={{ color: 'var(--xaga-white)' }}
           >
             {t(`navbar.links.${key}`)}
-          </a>
+          </Link>
         ))}
-        <a
-          href="#contacto"
-          onClick={(e) => handleNavLinkClick(e, "#contacto")}
+        <Link
+          to="/#contacto"
+          onClick={closeMobileMenuOnly}
           className="mt-8 inline-block px-8 py-4 rounded-lg text-lg font-medium"
           style={{ backgroundColor: 'var(--xaga-gold-dark)', color: 'var(--xaga-white)' }}
         >
           {t('navbar.contact')}
-        </a>
+        </Link>
         <LanguageSwitcher forMobile={true} />
       </div>
     </header>

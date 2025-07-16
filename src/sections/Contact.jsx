@@ -56,7 +56,7 @@ const Contact = () => {
             sub={t('contact.pageSubtitle')} 
         />
 
-        <div className="mt-10 md:mt-14 grid md:grid-cols-5 gap-10 lg:gap-16 md:items-stretch">
+        <div className="mt-10 mb-10 md:mt-14 grid md:grid-cols-5 gap-10 lg:gap-16 md:items-stretch">
           <div ref={contactPanelRef} className="md:col-span-3 p-8 md:p-10 rounded-xl shadow-xl space-y-10 flex flex-col" style={{ backgroundColor: 'var(--xaga-white)' }}>
             
             <div className="contact-item-group">

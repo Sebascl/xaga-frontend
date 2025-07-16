@@ -1,27 +1,22 @@
-import Footer from "./sections/Footer";
-import Contact from "./sections/Contact";
-import Services from "./sections/Services";
-import MisionVision from "./sections/MisionVision";
-import Hero from "./sections/Hero";
-import QuienesSomos from "./sections/QuienesSomos";
-import NuestrosClientes from "./sections/NuestrosClientes";
-import Navbar from "./components/NavBar";
-import ChooseUs from "./sections/ChooseUs";
-import TramitesVisa from "./sections/TramitesVisa";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/NavBar';
+import Footer from './sections/Footer';
+import Home from './pages/Home';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import TermsAndConditions from './components/TermsAndConditions';
 
 const App = () => (
-  <>
-    <Navbar />
-    <Hero />
-    <QuienesSomos />
-    <ChooseUs />
-    <MisionVision />
-    <Services />
-    <TramitesVisa />
-    <NuestrosClientes />
-    <Contact />
-    <Footer />
-  </>
+  <Router>
+    <main className="bg-white">
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/aviso-de-privacidad" element={<PrivacyPolicy />} />
+        <Route path="/terminos-y-condiciones" element={<TermsAndConditions />} />
+      </Routes>
+      <Footer />
+    </main>
+  </Router>
 );
 
 export default App;
